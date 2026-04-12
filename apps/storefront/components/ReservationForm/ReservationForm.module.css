@@ -1,0 +1,102 @@
+.section {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 8rem 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 4rem;
+}
+
+.form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  text-align: left;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+}
+
+.input {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+}
+
+.dateTimeContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .dateTimeContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.submitButton {
+  margin-top: 2rem;
+  padding: 1.2rem;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.message {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 2px;
+  font-size: 0.9rem;
+}
+
+.success {
+  background-color: #e7f5ef;
+  color: #0b6343;
+  border: 1px solid #0b6343;
+}
+
+.error {
+  background-color: #fbeaea;
+  color: #a91c1c;
+  border: 1px solid #a91c1c;
+}

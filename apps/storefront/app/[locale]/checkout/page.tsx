@@ -1,0 +1,89 @@
+"use client";
+import { useState } from 'react';
+import { useCartStore } from '@/lib/cartStore';
+import { useTranslations, useLocale } from 'next-intl';
+import styles from './Checkout.module.css';
+
+export default function CheckoutPage() {
+    const { items, getTotalPrice, clearCart } = useCartStore();
+    const t = useTranslations('Checkout');
+    const locale = useLocale();
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const formData = new FormData(e.currentTarget);
+        const orderData = {
+            customer_name: formData.get('name'),
+            customer_email: formData.get('email'),
+            customer_document_type: formData.get('docType'),
+            customer_document_id: formData.get('docId'),
+            customer_address: formData.get('address'),
+            total_amount: getTotalPrice(),
+            items: items.map(item => ({
+                product_id: item.id,
+                quantity: item.quantity,
+                price_at_purchase: item.price
+            }))
+        };
+
+        // 1. Aquí llamaríamos a una Server Action para guardar en Supabase
+        // 2. Y luego redirigiríamos a la pasarela de pagos (Wompi, MercadoPago, etc.)
+        console.log("Datos de la orden listos para Supabase y Siigo:", orderData);
+
+        alert("Simulación: Orden guardada. En un entorno real, aquí irías a la pasarela de pago.");
+        setLoading(false);
+    };
+
+    if (items.length === 0) return <div className="p-20 text-center">Tu carrito está vacío.</div>;
+
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.container}>
+                <h1 className="text-serif text-5xl mb-10">{t('title')}</h1>
+
+                <div className={styles.grid}>
+                    {/* Formulario */}
+                    <form onSubmit={handleSubmit} className={styles.form}>
+                        <h2 className="text-serif text-2xl mb-6">{t('billingDetails')}</h2>
+
+                        <input name="name" placeholder={t('name')} className={styles.input} required />
+                        <input name="email" type="email" placeholder={t('email')} className={styles.input} required />
+
+                        <div className={styles.row}>
+                            <select name="docType" className={styles.input} required>
+                                <option value="CC">Cédula de Ciudadanía</option>
+                                <option value="NIT">NIT</option>
+                                <option value="CE">Cédula de Extranjería</option>
+                            </select>
+                            <input name="docId" placeholder={t('documentId')} className={styles.input} required />
+                        </div>
+
+                        <input name="address" placeholder={t('address')} className={styles.input} required />
+
+                        <button type="submit" className="btn btn-primary w-full mt-6" disabled={loading}>
+                            {loading ? 'Procesando...' : t('payButton')}
+                        </button>
+                    </form>
+
+                    {/* Resumen */}
+                    <div className={styles.summary}>
+                        <h2 className="text-serif text-2xl mb-6">{t('orderSummary')}</h2>
+                        {items.map(item => (
+                            <div key={item.id} className={styles.item}>
+                                <span>{item.name[locale]} x {item.quantity}</span>
+                                <span>${item.price * item.quantity}</span>
+                            </div>
+                        ))}
+                        <div className={styles.total}>
+                            <span>{t('total')}</span>
+                            <span className="text-accent">${getTotalPrice()}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

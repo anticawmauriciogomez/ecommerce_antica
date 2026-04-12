@@ -1,0 +1,99 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 16, 14, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawer {
+  width: 100%;
+  max-width: 450px;
+  background: var(--bg-secondary);
+  height: 100%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 60px rgba(18, 16, 14, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+}
+
+.itemList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.itemImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.itemInfo {
+  flex: 1;
+}
+
+.footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: 2.5rem;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  font-family: var(--font-serif);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.closeBtn:focus {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.removeBtn:focus {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}

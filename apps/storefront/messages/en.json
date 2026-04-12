@@ -1,0 +1,189 @@
+{
+  "HomePage": {
+    "title": "Welcome to Antica",
+    "subtitle": "Your online store"
+  },
+  "Hero": {
+    "title": "This dream didn't start today",
+    "subtitle": "It started many years ago in the hands of those who taught us to work, believe and love. Today Antica M&M honors that timeless legacy.",
+    "button": "Discover Our Story"
+  },
+  "Header": {
+    "menu": "MENU",
+    "experiences": "EXPERIENCES",
+    "products": "PRODUCTS",
+    "nosotros": "ABOUT US",
+    "gift": "GIFT",
+    "reserve": "RESERVE",
+    "cart": "CART"
+  },
+  "Menu": {
+    "title": "MENU",
+    "subtitle": "Antíca Café",
+    "categories": {
+      "starters": "APPETIZERS TO SHARE",
+      "breakfast": "BREAKFAST",
+      "secondCourse": "SECOND COURSE",
+      "sweets": "SWEET DISHES",
+      "coldDrinks": "COLD DRINKS",
+      "hotDrinks": "HOT DRINKS"
+    },
+    "items": {
+      "patacones": {
+        "name": "Mixed Patacones"
+      },
+      "acai": {
+        "name": "Acai Bowl"
+      },
+      "migao": {
+        "name": "Migao"
+      },
+      "hamburgers": {
+        "name": "Mini Burgers"
+      },
+      "choriperro": {
+        "name": "Mini Hot Dogs (Choriperro)"
+      },
+      "sandwich": {
+        "name": "Sandwich"
+      },
+      "wafles": {
+        "name": "Waffles",
+        "desc": "(Red Berries - Yellow Fruits)"
+      },
+      "croissant": {
+        "name": "Sweet Red Berry Croissant"
+      },
+      "sodaRojos": {
+        "name": "Red Berry Soda"
+      },
+      "sodaMaracuya": {
+        "name": "Passion Fruit & Cape Gooseberry Soda"
+      },
+      "sodaMango": {
+        "name": "Mango & Lychee Soda"
+      },
+      "sodaJamaica": {
+        "name": "Hibiscus Soda"
+      },
+      "sodaCafe": {
+        "name": "Coffee Soda"
+      },
+      "anticano": {
+        "name": "Anticano"
+      },
+      "cappuccino": {
+        "name": "Cappuccino"
+      },
+      "moccaccino": {
+        "name": "Moccaccino"
+      },
+      "aromatica": {
+        "name": "Fruit Herbal Tea"
+      },
+      "cafeAntica": {
+        "name": "Antíca Coffee",
+        "desc": "(Drink with liquor)"
+      }
+    }
+  },
+  "ReservationForm": {
+    "title": "Make a Reservation",
+    "subtitle": "Secure your table at Antica.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Your first and last name",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "Your contact number",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "guestsLabel": "Number of Guests",
+    "guestsPlaceholder": "E.g: 4",
+    "submitButton": "Submit Reservation",
+    "successMessage": "Thank you! We have received your reservation request. We will contact you soon to confirm.",
+    "errorMessage": "There was an error submitting your reservation. Please try again."
+  },
+  "GiftPage": {
+    "title": "Gift an Experience",
+    "subtitle": "Let someone special live unforgettable moments in the world of coffee",
+    "selectExperience": "Select an Experience",
+    "experienceDescription": "Selected experience information",
+    "quantity": "Quantity",
+    "quantityHelp": "Number of people or groups you want to gift this experience to",
+    "voucherValue": "Extra Voucher Value",
+    "voucherPlaceholder": "Select the extra bonus value",
+    "voucherExplanation": "This extra voucher is redeemable at Antíca Café for: premium coffees, event tickets, dishes from our menu, store products and more.",
+    "totalValue": "Total Gift Value",
+    "notifyRecipient": "Notify Recipient",
+    "recipientName": "Recipient Name",
+    "recipientEmail": "Recipient Email",
+    "recipientMessage": "Personal Message (Optional)",
+    "recipientMessagePlaceholder": "Write a personal message...",
+    "termsAndConditions": "I accept the terms and conditions",
+    "termsLink": "View terms and conditions",
+    "sendGift": "Send Gift",
+    "giftSent": "Gift sent successfully!",
+    "giftError": "There was an error sending the gift. Please try again.",
+    "viewDetails": "View Details",
+    "addToCart": "Add to Cart"
+  },
+  "Checkout": {
+    "title": "Checkout",
+    "billingDetails": "Billing Details",
+    "name": "Full Name",
+    "documentType": "Document Type",
+    "documentId": "Document Number (NIT/Cédula)",
+    "address": "Shipping/Billing Address",
+    "email": "Email",
+    "payButton": "Pay now",
+    "orderSummary": "Order Summary",
+    "total": "Total to pay"
+  },
+  "ExperienciasPage": {
+    "title": "Unique Experiences",
+    "subtitle": "Discover unforgettable moments in the world of coffee",
+    "emptyState": "New experiences will be available soon."
+  },
+  "About": {
+    "mainTitle": "The place Pitalito always deserved.",
+    "boxTitle": "Antica M&M was not born to sell coffee.",
+    "boxSubtitle": "It was born to prove that southern Colombia has everything to live big.",
+    "boxText": "The best coffee in the world is born in these mountains.\nFor decades, we sent it abroad without ever keeping the best for ourselves.\nAntica M&M changes that.",
+    "bodyParagraph1": "We are a space designed with the same precision used to cultivate single-origin coffee in Huila. Every area of Antica was thought out so that whoever enters won't want to leave. So that specialty coffee has the stage it deserves. So that Pitalito has a place to be proud of.",
+    "bodyParagraph2": "Antica M&M is a way of telling them: we did it and today this dream, belongs to everyone.",
+    "finalQuote": "\"In every decision, in every detail, their legacy is in the timeless love. In how we choose to honor their work.\"",
+    "finalAuthor": "— Antica M&M, Pitalito, Huila",
+    "discoverMore": "Learn Our Story"
+  },
+  "Nosotros": {
+    "heroTitle": "Three Generations, One Passion",
+    "heroSubtitle": "The story of the Ortega family and the rebirth of coffee in Huila.",
+    "historyTitle": "The Legacy of Don Luis",
+    "historyText": "Luis Ortega didn't just plant coffee; he planted a vision. Since the 1970s, he transformed the mountains of Acevedo into a benchmark of quality, founding farms like Samaniego and La Fortuna that are now the heart of our production.",
+    "sections": {
+      "luis": {
+        "title": "Don Luis Ortega",
+        "text": "Pioneer and master. His life has been dedicated to modernizing cultivation and demonstrating that southern Colombia produces the best coffee in the world."
+      },
+      "daughter": {
+        "title": "Antica's Vision",
+        "text": "Inspired by her father, <br>Maria Magdalena Ortega</br> created Antica M&M to give specialty coffee the stage it deserves: a meeting place and a source of regional pride."
+      },
+      "victorious": {
+        "title": "Crezia: Export Coffee",
+        "text": "Víctor Ortega leads Crezia Colombian Coffee, taking his father's technical legacy to international markets under global standards of excellence."
+      },
+      "union": {
+        "title": "A Bridge Between Tradition and Future",
+        "text": "Antica and Crezia are not just brands; they are the living tribute of two siblings to the work of a man who believed in his land."
+      },
+      "family": {
+        "title": "Our Root: The Family",
+        "text": "Behind every grain there is a family united by the aroma of coffee and commitment to Acevedo."
+      },
+      "inauguration": {
+        "title": "The Dream Come True",
+        "text": "This dream didn't start today… It started many years ago, in the hands of those who taught us to work, to believe… and Love.\n\nToday, some of those people are no longer here. But everything they left us… remains here.\n\nIn every decision, in every detail, their legacy is in timeless love. In how we choose to honor their work.\n\nAntica M&M is that. It is a way of telling them: we did it and today this dream, belongs to everyone."
+      }
+    }
+  }
+}

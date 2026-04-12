@@ -1,0 +1,221 @@
+/* Hero Banner */
+.hero {
+  position: relative;
+  height: 50vh;
+  min-height: 400px;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/media/DSC01073.jpg"); /* Imagen diferente para regalos */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(198, 167, 124, 0.4),
+    rgba(18, 16, 14, 0.7)
+  );
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease-out;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.heroDivider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-gold),
+    var(--accent-gold-hover)
+  );
+  margin: 0 auto;
+  border-radius: 2px;
+  animation: dividerGrow 1.2s ease-out 0.4s both;
+}
+
+/* Gift Form Section */
+.giftSection {
+  padding: 4rem 0;
+  background-color: var(--bg-primary);
+}
+
+.formContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .formContainer {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dividerGrow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 80px;
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    height: 40vh;
+    min-height: 350px;
+    background-attachment: scroll;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .heroDivider {
+    width: 60px;
+  }
+
+  .giftSection {
+    padding: 2rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+  }
+
+  .heroDivider {
+    width: 50px;
+    height: 1.5px;
+  }
+}
+
+/* Dark theme support */
+[data-theme="dark"] .hero {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/media/DSC01073.jpg");
+}
+
+.container {
+  max-width: 1200px;
+  /* Ancho máximo para el contenido */
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  /* py-16 px-6 */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+  /* mb-16 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background-color: var(--accent-gold);
+  margin-top: 2rem;
+}
+
+.grid {
+  display: grid;
+  /* Crea columnas que se adaptan, con un mínimo de 300px */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem;
+  border: 1px dashed var(--text-secondary);
+  border-radius: 4px;
+}

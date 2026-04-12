@@ -1,0 +1,19 @@
+/* Este archivo contiene solo estilos específicos del layout de locale */
+/* Los estilos globales de tema están en ../globals.css */
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.imgDark {
+  display: none;
+}
+
+[data-theme="dark"] .imgLight {
+  display: none;
+}
+[data-theme="dark"] .imgDark {
+  display: unset;
+}
