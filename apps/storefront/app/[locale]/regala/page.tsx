@@ -1,6 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { supabase } from "@/lib/supabaseClient";
 import GiftForm from "@/components/GiftForm/GiftForm";
+import { getCmsMedia } from "@/lib/cms";
 import styles from "./RegalaPage.module.css";
 
 type Product = {
@@ -57,11 +58,16 @@ export default async function RegalaPage() {
   const locale = await getLocale();
   const products: Product[] = await getExperienceProducts();
   const t = await getTranslations("GiftPage");
+  // @cms-group "Cabeceras de Secciones" @cms-label "Fondo de Cabecera (Regalo)"
+  const heroImage = await getCmsMedia("regala_hero", "/media/DSC01073.jpg") as string;
 
   return (
     <>
       {/* Hero Banner */}
-      <section className={styles.hero}>
+      <section 
+        className={styles.hero} 
+        style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImage}')` }}
+      >
         <div className={styles.heroOverlay}></div>
         <div className={`${styles.heroContent} container-custom`}>
           <h1 className={`${styles.heroTitle} text-serif`}>{t("title")}</h1>

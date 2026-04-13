@@ -46,7 +46,7 @@ async function submitReservation(prevState: ComponentState, formData: FormData):
     return { success: true, message: '¡Reserva enviada con éxito!' };
 }
 
-const ReservationForm = () => {
+const ReservationForm = ({ reservationBg }: { reservationBg?: string }) => {
     const t = useTranslations('ReservationForm');
     // El estado del componente usa el nuevo tipo 'ComponentState'
     const [formState, setFormState] = useState<ComponentState>(null);
@@ -68,7 +68,11 @@ const ReservationForm = () => {
     };
 
     return (
-        <section id="reservation" className={styles.section}>
+        <section 
+            id="reservation" 
+            className={styles.section}
+            style={reservationBg ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${reservationBg}')`, backgroundSize: 'cover', backgroundPosition: 'center', color: 'white' } : {}}
+        >
             <div className={styles.container}>
                 <h2 className={styles.title}>{t('title')}</h2>
                 <p className={styles.subtitle}>{t('subtitle')}</p>

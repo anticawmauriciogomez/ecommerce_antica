@@ -1,6 +1,7 @@
 import React from "react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Link } from "../../i18n/routing";
+import { getCmsMedia } from "@/lib/cms";
 import styles from "./Hero.module.css";
 
 const images = [
@@ -15,11 +16,11 @@ const images = [
   "/media/DSC01979.jpg",
 ];
 
-// Duplicamos para el scroll infinito
-const sliderImages = [...images, ...images];
-
-const Hero = () => {
-  const t = useTranslations("Hero");
+const Hero = async () => {
+  const t = await getTranslations("Hero");
+  // @cms-group "Home Page" @cms-label "Imágenes del Carrusel Principal (Hero)" @cms-type gallery
+  const dbImages = await getCmsMedia("home_hero_slider", images) as string[];
+  const sliderImages = [...dbImages, ...dbImages];
 
   return (
     <section className={styles.hero}>

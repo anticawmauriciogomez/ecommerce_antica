@@ -3,6 +3,7 @@ import CafeMenu from '@/components/CafeMenu/CafeMenu';
 import ReservationForm from '@/components/ReservationForm/ReservationForm';
 import AboutSection from '@/components/AboutSection/AboutSection';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { getCmsMedia } from '@/lib/cms';
 
 // En Next.js 15, params es una Promesa
 export default async function Home(props: {
@@ -10,6 +11,9 @@ export default async function Home(props: {
 }) {
   // OBLIGATORIO: Esperar los params
   const { locale } = await props.params;
+  
+  // @cms-group "Home Page" @cms-label "Fondo Sección de Reservas"
+  const reservationBg = await getCmsMedia("home_reservation_bg", "") as string;
 
   return (
     <main style={{ overflowX: 'hidden' }}>
@@ -19,7 +23,7 @@ export default async function Home(props: {
         <CafeMenu />
       </ScrollReveal>
       <ScrollReveal direction="up" delay={600} threshold={0.05}>
-        <ReservationForm />
+        <ReservationForm reservationBg={reservationBg} />
       </ScrollReveal>
     </main>
   );

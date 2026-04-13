@@ -25,14 +25,16 @@ const ThemeToggle = () => {
       className={styles.themeToggle}
       aria-label="Toggle Theme"
     >
-      {/* Si el tema es light, mostramos la Luna para cambiar a dark. 
-                Si el tema es dark, mostramos el Sol para cambiar a light. */}
       {theme === "light" ? "☾" : "☼"}
     </button>
   );
 };
 
-const Header = () => {
+interface HeaderProps {
+  logoUrl?: string;
+}
+
+const Header = ({ logoUrl }: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,7 +86,11 @@ const Header = () => {
           {/* CENTRO: Logo */}
           <div className={styles.logoContainer}>
             <Link href={`/${locale}`} style={{ textDecoration: "none" }}>
-              <h1 className={`${styles.logoText} text-serif`}>Antica</h1>
+              {logoUrl ? (
+                <img src={logoUrl} alt="Antica Logo" className={styles.logoImage} style={{ height: '40px', width: 'auto' }} />
+              ) : (
+                <h1 className={`${styles.logoText} text-serif`}>Antica</h1>
+              )}
             </Link>
           </div>
 
@@ -126,7 +132,6 @@ const Header = () => {
         className={`${styles.mobileMenu} ${isMenuOpen ? styles.mobileMenuOpen : ""}`}
       >
         <nav className={styles.mobileNav}>
-          {/* Navigation Links - Always shown */}
           <Link
             href={`/${locale}#cafe-menu`}
             onClick={() => setIsMenuOpen(false)}
@@ -146,7 +151,6 @@ const Header = () => {
             {t("nosotros")}
           </IntlLink>
 
-          {/* Mobile-only: Action items */}
           <div className={styles.mobileOnly}>
             <Link
               href={`/${locale}#reservation`}
@@ -161,10 +165,8 @@ const Header = () => {
               {t("gift")}
             </Link>
 
-            {/* Separator */}
             <div className={styles.mobileNavSeparator}></div>
 
-            {/* Action Buttons */}
             <button
               onClick={() => {
                 setIsCartOpen(true);

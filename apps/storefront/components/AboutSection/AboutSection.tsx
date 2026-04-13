@@ -1,11 +1,14 @@
-import React from "react";
-import { useTranslations } from "next-intl";
+﻿import React from "react";
+import { getTranslations } from "next-intl/server";
 import { Link } from "../../i18n/routing";
 import { ScrollReveal } from "../ScrollReveal";
+import { getCmsMedia } from "@/lib/cms";
 import styles from "./AboutSection.module.css";
 
-const AboutSection = () => {
-  const t = useTranslations("About");
+const AboutSection = async () => {
+  const t = await getTranslations("About");
+  // @cms-group "Home Page" @cms-label "Imagen de Sobre Nosotros"
+  const imageUrl = await getCmsMedia("home_about_image", "/media/DSC01203.jpg") as string;
 
   return (
     <section className={styles.aboutSection}>
@@ -15,7 +18,7 @@ const AboutSection = () => {
           <div className={styles.heroSection}>
             <div className={styles.imageWrapper}>
               <img
-                src="/media/DSC01203.jpg"
+                src={imageUrl}
                 alt="Antica M&M - El orgullo del sur de Colombia"
                 className={styles.heroImage}
               />
@@ -113,3 +116,5 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
+
+

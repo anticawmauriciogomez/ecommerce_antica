@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation'
 import {
   LayoutDashboard,
   Package,
@@ -11,70 +11,124 @@ import {
   CalendarDays,
   Settings,
   LogOut,
+  Type,
+  Image as ImageIcon
 } from 'lucide-react'
 import { createBrowserClient } from '@supabase/ssr'
+import { useLayout } from './LayoutContext'
 
-const navItems = [
-  { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-  { name: 'Products & Experiences', href: '/products', icon: Package },
-  { name: 'Categories', href: '/categories', icon: Tags },
-  { name: 'Orders', href: '/orders', icon: ShoppingCart },
-  { name: 'Reservations', href: '/reservations', icon: CalendarDays },
-  { name: 'Settings', href: '/settings', icon: Settings },
+const menuGroups = [
+  {
+    label: 'Negocio',
+    items: [
+      { label: 'Dashboard', href: '/', icon: LayoutDashboard },
+      { label: 'Products & Experiences', href: '/products', icon: Package },
+      { label: 'Categories', href: '/categories', icon: Tags },
+      { label: 'Orders', href: '/orders', icon: ShoppingCart },
+      { label: 'Reservations', href: '/reservations', icon: CalendarDays },
+    ]
+  },
+  {
+    label: 'CMS',
+    items: [
+      { label: 'CMS Texts', href: '/cms/texts', icon: Type },
+      { label: 'CMS Media', href: '/cms/media', icon: ImageIcon },
+    ]
+  },
+  {
+    label: 'Admin',
+    items: [
+      { label: 'Settings', href: '/settings', icon: Settings },
+    ]
+  }
 ]
+
 
 export default function Sidebar() {
   const pathname = usePathname()
-
-  const handleLogout = async () => {
-    const supabase = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    )
-    await supabase.auth.signOut()
-    window.location.href = '/login'
-  }
+  const { locale } = useParams()
+  const { sidebarOpen, setSidebarOpen } = useLayout()
 
   return (
-    <div className="flex h-screen w-64 flex-col border-r bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
-      <div className="flex h-16 items-center px-6">
-        <h1 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Admin Panel</h1>
-      </div>
-      <nav className="flex-1 space-y-1 px-3 py-4">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`group flex items-center rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
-                isActive
-                  ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400'
-                  : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white'
-              }`}
+    <>
+      {/* Mobile Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-(--background)/60 backdrop-blur-sm md:hidden transition-opacity duration-300"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      <aside 
+        className={`fixed inset-y-0 left-0 z-50 w-64 transition-transform duration-300 ease-in-out border-r border-white/5 md:translate-x-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+        style={{ backgroundColor: '#12100e' }}
+      >
+
+
+      <div className="flex h-full flex-col">
+        {/* Brand Header */}
+        <div className="flex h-20 items-center px-6 border-b border-white/5">
+          <div className="flex items-center gap-3">
+             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#cba87c]/10 border border-[#cba87c]/20">
+                <span className="text-xl font-bold text-[#cba87c]">A</span>
+             </div>
+             <div>
+                <h1 className="text-lg font-bold tracking-tight text-white leading-tight">Antica <span className="text-[#cba87c]">Admin</span></h1>
+                <p className="text-[8px] uppercase tracking-[2px] text-gray-500 font-bold">Coffe & Bakery</p>
+             </div>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <nav className="flex-1 overflow-y-auto px-4 py-8 space-y-8 scrollbar-thin scrollbar-thumb-white/5">
+          {menuGroups.map((group) => (
+            <div key={group.label} className="space-y-3">
+              <h2 className="px-2 text-[10px] font-bold uppercase tracking-[3px] text-gray-600">
+                {group.label}
+              </h2>
+              <div className="space-y-1">
+                {group.items.map((item) => {
+                  const fullHref = `/${locale}${item.href === '/' ? '' : item.href}`
+                  const isActive = pathname === fullHref || (item.href === '/' && (pathname === `/${locale}` || pathname === `/${locale}/`))
+                  const Icon = item.icon
+                  return (
+                    <Link
+                      key={item.href}
+                      href={fullHref}
+                      className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-medium transition-all duration-300 ${
+                        isActive
+                          ? 'bg-[#cba87c] text-white shadow-lg shadow-[#cba87c]/20'
+                          : 'text-gray-400 hover:bg-white/5 hover:text-[#cba87c]'
+                      }`}
+                    >
+                      <Icon className={`h-4 w-4 transition-colors ${isActive ? 'text-white' : 'group-hover:text-[#cba87c]'}`} />
+                      <span className="tracking-wide">{item.label}</span>
+                      {isActive && <div className="ml-auto h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_8px_white]" />}
+                    </Link>
+                  )
+                })}
+
+              </div>
+            </div>
+          ))}
+        </nav>
+
+        {/* User / Logout */}
+        <div className="p-4 border-t border-white/5">
+          <form action="/auth/signout" method="post">
+            <button
+               type="submit"
+               className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-xs font-bold text-gray-500 hover:bg-red-500/10 hover:text-red-400 transition-all duration-300 uppercase tracking-widest"
             >
-              <item.icon
-                className={`mr-3 h-5 w-5 flex-shrink-0 transition-colors ${
-                  isActive
-                    ? 'text-indigo-600 dark:text-indigo-400'
-                    : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-300'
-                }`}
-                aria-hidden="true"
-              />
-              {item.name}
-            </Link>
-          )
-        })}
-      </nav>
-      <div className="border-t border-gray-200 p-4 dark:border-gray-800">
-        <button
-          onClick={handleLogout}
-          className="group flex w-full items-center rounded-md px-3 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 hover:text-red-700 dark:text-red-500 dark:hover:bg-red-500/10 dark:hover:text-red-400"
-        >
-          <LogOut className="mr-3 h-5 w-5 flex-shrink-0 text-red-500 group-hover:text-red-600 dark:group-hover:text-red-400" />
-          Sign out
-        </button>
+              <LogOut className="h-4 w-4" />
+              <span>Cerrar sesión</span>
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </aside>
+    </>
   )
 }

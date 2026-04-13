@@ -3,6 +3,7 @@ import styles from './Nosotros.module.css';
 import { AboutBlock } from './AboutBlock';
 import Link from 'next/link';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { getCmsMedia } from '@/lib/cms';
 
 interface PageProps {
     params: Promise<{ locale: string }>;
@@ -11,11 +12,25 @@ interface PageProps {
 export default async function NosotrosPage({ params }: PageProps) {
     const { locale } = await params;
     const t = await getTranslations('Nosotros');
+    
+    // Cargar CMS Media
+    // @cms-group "Cabeceras de Secciones" @cms-label "Fondo de Cabecera (Nosotros)"
+    const heroImage = await getCmsMedia("nosotros_hero", "/media/nosotros/hero-family.jpg") as string;
+    // @cms-group "Página Nosotros (Historia Familiar)" @cms-label "Retrato de Don Luis Ortega"
+    const luisImage = await getCmsMedia("nosotros_don_luis_image", "/media/nosotros/don-luis.jpg") as string;
+    // @cms-group "Página Nosotros (Historia Familiar)" @cms-label "La Visión de Antica"
+    const hijaImage = await getCmsMedia("nosotros_daughter_image", "/media/nosotros/luis-hija.jpg") as string;
+    // @cms-group "Página Nosotros (Historia Familiar)" @cms-label "Retrato Crezia Exportación"
+    const victorImage = await getCmsMedia("nosotros_victor_image", "/media/nosotros/luis-victor.jpg") as string;
+    // @cms-group "Página Nosotros (Historia Familiar)" @cms-label "Imagen Unión (Hermanos)"
+    const unionImage = await getCmsMedia("nosotros_union_image", "/media/nosotros/los-tres.jpg") as string;
+    // @cms-group "Página Nosotros (Historia Familiar)" @cms-label "Retrato Familiar (Pantalla Completa)"
+    const familyImage = await getCmsMedia("nosotros_family_image", "/media/nosotros/familia-completa.jpg") as string;
 
     return (
         <div className={styles.wrapper}>
             {/* 1. HERO (Ya lo tenemos) */}
-            <section className={styles.hero}>
+            <section className={styles.hero} style={{ backgroundImage: `url('${heroImage}')` }}>
                 <div className={styles.heroOverlay} />
                 <div className={styles.heroContent}>
                     <h1 className="text-serif">{t('heroTitle')}</h1>
@@ -47,14 +62,14 @@ export default async function NosotrosPage({ params }: PageProps) {
                     <AboutBlock
                         title={t('sections.luis.title')}
                         text={t('sections.luis.text')}
-                        image="/media/nosotros/don-luis.jpg"
+                        image={luisImage}
                     />
 
                     {/* La Hija - Antica */}
                     <AboutBlock
                         title={t('sections.daughter.title')}
                         text={t('sections.daughter.text')}
-                        image="/media/nosotros/luis-hija.jpg"
+                        image={hijaImage}
                         reverse
                     />
 
@@ -62,7 +77,7 @@ export default async function NosotrosPage({ params }: PageProps) {
                     <AboutBlock
                         title={t('sections.victor.title')}
                         text={t('sections.victor.text')}
-                        image="/media/nosotros/luis-victor.jpg"
+                        image={victorImage}
                     />
                 </section>
             </ScrollReveal>
@@ -80,7 +95,7 @@ export default async function NosotrosPage({ params }: PageProps) {
                             </ScrollReveal>
                             <ScrollReveal direction="left" delay={1000}>
                                 <div className={styles.unionImage}>
-                                    <img src="/media/nosotros/los-tres.jpg" alt="Unión Ortega" />
+                                    <img src={unionImage} alt="Unión Ortega" />
                                 </div>
                             </ScrollReveal>
                         </div>
@@ -92,7 +107,7 @@ export default async function NosotrosPage({ params }: PageProps) {
              <ScrollReveal direction="fade" delay={800} threshold={0.05}>
                  <section className={styles.familySection}>
                      <div className={styles.familyImageFull}>
-                         <img src="/media/nosotros/familia-completa.jpg" alt="Familia Ortega" />
+                         <img src={familyImage} alt="Familia Ortega" />
                          <div className={styles.familyOverlay}>
                              <ScrollReveal direction="up" delay={1000}>
                                  <div className={styles.familyText}>

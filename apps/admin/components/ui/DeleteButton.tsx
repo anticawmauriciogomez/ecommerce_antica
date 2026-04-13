@@ -17,20 +17,21 @@ export function DeleteButton({
   return (
     <button 
       onClick={() => {
-        if (confirm(`Are you sure you want to delete this ${itemType}?`)) {
+        if (confirm(`¿Estás seguro de que deseas eliminar este ${itemType}?`)) {
           startTransition(async () => {
             try {
               await deleteAction(id)
             } catch (error) {
-              alert(`Error deleting ${itemType}: ${error}`)
+              alert(`Error al eliminar: ${error}`)
             }
           })
         }
       }}
       disabled={isPending}
-      className="text-red-500 hover:text-red-700 font-medium flex items-center gap-1 disabled:opacity-50"
+      className="text-red-400 hover:text-red-600 font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 transition-colors disabled:opacity-50"
     >
-      <Trash2 className="h-4 w-4" /> {isPending ? 'Deleting...' : 'Delete'}
+      <Trash2 className="h-3.5 w-3.5" /> {isPending ? 'Eliminando...' : 'Eliminar'}
     </button>
+
   )
 }

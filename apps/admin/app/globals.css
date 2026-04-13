@@ -3,14 +3,30 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #fdfaf7; /* Antica Bone-White (Cálido) */
+    --foreground: #1a1512; /* Antica Deep Coffee */
+    --card-bg: #ffffff;
+    --card-border: rgba(26, 21, 18, 0.05); /* Borde cálido sutil */
+    --header-bg: rgba(253, 250, 247, 0.85);
+    --border-color: #f3efea;
+    --accent-gold: #cba87c;
+    --accent-gold-hover: #b9976b;
+    --font-serif: "Cormorant Garamond", serif;
   }
 
   .dark {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #110f0d; /* Antica Deep Bitter Chocolate */
+    --foreground: #fcfaf8; /* Antica Bone-White */
+    --card-bg: #1a1816;
+    --card-border: rgba(253, 250, 247, 0.03);
+    --header-bg: rgba(17, 15, 13, 0.85);
+    --border-color: #211e1b;
+    --accent-gold: #cba87c;
+    --accent-gold-hover: #e0bc8d;
   }
+
+
+
 
   body {
     background-color: var(--background);
@@ -18,3 +34,4 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
