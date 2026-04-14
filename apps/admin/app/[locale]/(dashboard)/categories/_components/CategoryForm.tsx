@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/Input'
 import { Label } from '@/components/ui/Label'
 import { Button } from '@/components/ui/Button'
 import { saveCategory } from '../actions'
+import { toast } from "@repo/ui/toast"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function CategoryForm({ category, onClose }: { category?: any, onClose: () => void }) {
@@ -20,9 +21,11 @@ export function CategoryForm({ category, onClose }: { category?: any, onClose: (
     
     try {
       await saveCategory(formData)
+      toast.success(category?.id ? "Categoría actualizada" : "Categoría creada")
       onClose()
     } catch (error) {
-      alert("Error saving category: " + String(error))
+      toast.error("Error al guardar la categoría")
+      console.error(error)
     } finally {
       setIsPending(false)
     }

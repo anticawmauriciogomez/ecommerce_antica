@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Antica E-commerce CMS",
 };
 
+import { Toaster } from "@repo/ui/toast";
+
 export default async function RootLayout({
   children,
   params,
@@ -36,6 +38,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
+        <Toaster position="top-right" expand={false} richColors />
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { ImageUploader } from '@/components/ui/ImageUploader'
 import { RichTextEditor } from '@/components/ui/RichTextEditor'
 import { saveProduct } from '../actions'
+import { toast } from "@repo/ui/toast"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ProductForm({ product, categories }: { product?: any, categories: any[] }) {
@@ -22,8 +23,17 @@ export function ProductForm({ product, categories }: { product?: any, categories
     
     try {
       await saveProduct(formData)
+      toast.success(product?.id ? "Producto actualizado con éxito" : "Producto creado con éxito")
     } catch (error) {
-      alert("Error saving product: " + String(error))
+      if (
+        (error instanceof Error && error.message.includes('NEXT_REDIRECT')) ||
+        (error && typeof error === 'object' && 'digest' in error && typeof (error as any).digest === 'string' && (error as any).digest.includes('NEXT_REDIRECT'))
+      ) {
+        toast.success(product?.id ? "Producto actualizado con éxito" : "Producto creado con éxito")
+        throw error
+      }
+      toast.error("Error al guardar el producto")
+      console.error(error)
       setIsPending(false)
     }
   }

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useCartStore } from '@/lib/cartStore';
 import { useTranslations, useLocale } from 'next-intl';
 import styles from '../Checkout.module.css';
+import { toast } from "@repo/ui/toast"
 
 interface CheckoutUIProps {
     heroImage: string;
@@ -34,7 +35,7 @@ export default function CheckoutUI({ heroImage }: CheckoutUIProps) {
         };
 
         console.log("Datos de la orden listos para Supabase y Siigo:", orderData);
-        alert("Simulación: Orden guardada. En un entorno real, aquí irías a la pasarela de pago.");
+        toast.info("Simulación: Orden guardada. En un entorno real, aquí irías a la pasarela de pago.");
         setLoading(false);
     };
 

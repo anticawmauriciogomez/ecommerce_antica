@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Save, ChevronDown, ChevronRight } from 'lucide-react'
 import { saveStorefrontContent } from '../../actions'
 import { RichTextEditor } from '@/components/ui/RichTextEditor'
+import { toast } from "@repo/ui/toast"
 
 // Aplana objeto anidado: { Hero: { title: "x" } } -> { "Hero.title": "x" }
 function flattenObj(obj: any, parent = '', res: Record<string, string> = {}) {
@@ -88,9 +89,10 @@ export function TextsForm({ baseDictionaryEs, baseDictionaryEn, savedTranslation
       const esNested = unflattenObj(valuesEs)
       const enNested = unflattenObj(valuesEn)
       await saveStorefrontContent('translations', { es: esNested, en: enNested })
-      alert('¡Textos guardados! Los cambios están en vivo.')
+      toast.success('¡Textos guardados! Los cambios están en vivo.')
     } catch (err) {
-      alert('Error al guardar: ' + String(err))
+      toast.error('Error al guardar los textos')
+      console.error(err)
     } finally {
       setIsSaving(false)
     }

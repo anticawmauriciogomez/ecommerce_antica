@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Save } from 'lucide-react'
 import { saveStorefrontContent } from '../../actions'
 import { CmsUploader } from '@/components/ui/CmsUploader'
+import { toast } from "@repo/ui/toast"
 
 type MediaSlot = { key: string; label: string; type: string }
 type MediaGroup = { group: string; items: MediaSlot[] }
@@ -36,9 +37,10 @@ export function MediaForm({
       })
 
       await saveStorefrontContent('media_registry', payload)
-      alert('¡Media guardado! Los cambios están en vivo en la tienda.')
+      toast.success('¡Media guardado! Los cambios están en vivo en la tienda.')
     } catch (error) {
-      alert('Error al guardar media: ' + String(error))
+      toast.error('Error al guardar media')
+      console.error(error)
     } finally {
       setIsSaving(false)
     }
