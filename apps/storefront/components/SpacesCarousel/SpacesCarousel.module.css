@@ -1,0 +1,204 @@
+.carouselSection {
+  padding: 4rem 2rem;
+  background-color: var(--bg-primary);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.spacesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 3rem;
+  width: 85%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.spaceCard {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(18, 16, 14, 0.12);
+  border: 1px solid var(--border-color);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  width: 100%;
+  display: flex;
+  height: 500px;
+}
+
+.spaceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(18, 16, 14, 0.15);
+}
+
+.cardImageContainer {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.5s ease;
+}
+
+.imageNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.imageNav:hover {
+  background: var(--accent-gold);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.imageNav.prev {
+  left: 10px;
+}
+
+.imageNav.next {
+  right: 10px;
+}
+
+.cardImageIndicators {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.cardIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cardIndicator.active {
+  background-color: var(--accent-gold);
+  transform: scale(1.4);
+}
+
+.cardContent {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.cardDescription {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carouselSection {
+    padding: 2rem 1rem;
+  }
+
+  .spacesGrid {
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .spaceCard {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .cardImageContainer {
+    width: 100%;
+    height: 250px;
+  }
+
+  .cardContent {
+    padding: 2rem;
+  }
+
+  .cardTitle {
+    font-size: 1.8rem;
+  }
+
+  .cardDescription {
+    font-size: 1rem;
+  }
+
+  .imageNav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carouselSection {
+    padding: 1.5rem 1rem;
+  }
+
+  .spacesGrid {
+    gap: 1.5rem;
+    width: 95%;
+  }
+
+  .cardImageContainer {
+    height: 220px;
+  }
+
+  .cardContent {
+    padding: 1.5rem;
+  }
+
+  .cardTitle {
+    font-size: 1.5rem;
+  }
+
+  .cardDescription {
+    font-size: 0.95rem;
+  }
+}

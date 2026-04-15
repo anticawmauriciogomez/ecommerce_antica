@@ -87,7 +87,12 @@ const Header = ({ logoUrl }: HeaderProps) => {
           <div className={styles.logoContainer}>
             <Link href={`/${locale}`} style={{ textDecoration: "none" }}>
               {logoUrl ? (
-                <img src={logoUrl} alt="Antica Logo" className={styles.logoImage} style={{ height: '40px', width: 'auto' }} />
+                <img
+                  src={logoUrl}
+                  alt="Antica Logo"
+                  className={styles.logoImage}
+                  style={{ height: "40px", width: "auto" }}
+                />
               ) : (
                 <h1 className={`${styles.logoText} text-serif`}>ANTICA</h1>
               )}
@@ -149,6 +154,9 @@ const Header = ({ logoUrl }: HeaderProps) => {
           </Link>
           <IntlLink href="/nosotros" onClick={() => setIsMenuOpen(false)}>
             {t("nosotros")}
+          </IntlLink>
+          <IntlLink href="/espacios" onClick={() => setIsMenuOpen(false)}>
+            {t("spaces")}
           </IntlLink>
 
           <div className={styles.mobileOnly}>

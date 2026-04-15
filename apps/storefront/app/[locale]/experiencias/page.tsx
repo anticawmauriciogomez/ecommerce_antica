@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { supabase } from "@/lib/supabaseClient";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import { getCmsMedia } from "@/lib/cms";
+import PageHero from "@/components/PageHero/PageHero";
 import styles from "./ExperienciasPage.module.css";
 
 type Product = {
@@ -26,7 +27,7 @@ async function getExperienceProducts() {
     }
 
     // Find the category by name
-    const categoryName = locale === "es" ? "Experiencia" : "Experience";
+    const categoryName = locale === "es" ? "EXPERIENCIAS" : "EXPERIENCES";
     const category = allCats?.find(
       (cat) => cat.name && cat.name[locale] === categoryName,
     );
@@ -59,22 +60,18 @@ export default async function ExperienciasPage() {
   const products: Product[] = await getExperienceProducts();
   const t = await getTranslations("ExperienciasPage");
   // @cms-group "Cabeceras de Secciones" @cms-label "Fondo de Cabecera (Experiencias)"
-  const heroImage = await getCmsMedia("experiencias_hero", "/media/DSC01073.jpg") as string;
+  const heroImage = (await getCmsMedia(
+    "experiencias_hero",
+    "/media/DSC01073.jpg",
+  )) as string;
 
   return (
     <>
-      {/* Hero Banner */}
-      <section 
-        className={styles.hero}
-        style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${heroImage}')` }}
-      >
-        <div className={styles.heroOverlay}></div>
-        <div className={`${styles.heroContent} container-custom`}>
-          <h1 className={`${styles.heroTitle} text-serif`}>{t("title")}</h1>
-          <p className={`${styles.heroSubtitle} text-sans`}>{t("subtitle")}</p>
-          <div className={styles.heroDivider}></div>
-        </div>
-      </section>
+      <PageHero
+        title={t("title")}
+        subtitle={t("subtitle")}
+        backgroundImage={heroImage}
+      />
 
       {/* Products Section */}
       <section className={styles.productsSection}>

@@ -13,6 +13,7 @@
     "experiences": "EXPERIENCIAS",
     "products": "PRODUCTOS",
     "nosotros": "NOSOTROS",
+    "spaces": "ESPACIOS",
     "gift": "REGALA",
     "reserve": "RESERVA",
     "cart": "CARRITO"
@@ -184,6 +185,26 @@
         "title": "El Sueño Hecho Realidad",
         "text": "Este sueño no empezó hoy… Empezó hace muchos años, en las manos de quien nos enseñó a trabajar, a creer… y Amar.\n\nHoy, algunas de esas personas ya no están. Pero todo lo que nos dejaron… sigue aquí.\n\nEn cada decisión, en cada detalle, su legado está en el amor atemporal. En cómo decidimos honrar su trabajo.\n\nAntica M&M es eso. Es una forma de decirles: lo logramos y hoy este sueño, es de todos."
       }
+    }
+  },
+  "Spaces": {
+    "title": "Nuestros Espacios",
+    "description": "Descubre los ambientes únicos que hacen de Antica un lugar especial para disfrutar de momentos inolvidables.",
+    "button": "Ver Todos los Espacios",
+    "imageAlt": "Espacios de Antica M&M",
+    "heroTitle": "Nuestros Espacios",
+    "heroSubtitle": "Ambientes diseñados para crear experiencias memorables",
+    "space1": {
+      "title": "Sala Principal",
+      "description": "Nuestro espacio principal combina elegancia y comodidad. Con iluminación natural, muebles de madera y detalles que evocan la calidez de la casa cafetera tradicional."
+    },
+    "space2": {
+      "title": "Terraza Exterior",
+      "description": "Un oasis al aire libre donde el aroma del café se mezcla con la brisa fresca. Perfecto para disfrutar de un buen libro o una conversación tranquila."
+    },
+    "space3": {
+      "title": "Área de Eventos",
+      "description": "Espacio versátil para celebraciones especiales, catas de café, talleres y eventos corporativos. Diseño moderno con capacidad para diferentes configuraciones."
     }
   }
 }

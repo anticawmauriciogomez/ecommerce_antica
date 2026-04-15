@@ -1,9 +1,10 @@
-import Hero from '@/components/Hero/Hero';
-import CafeMenu from '@/components/CafeMenu/CafeMenu';
-import ReservationForm from '@/components/ReservationForm/ReservationForm';
-import AboutSection from '@/components/AboutSection/AboutSection';
-import { ScrollReveal } from '@/components/ScrollReveal';
-import { getCmsMedia } from '@/lib/cms';
+import Hero from "@/components/Hero/Hero";
+import CafeMenu from "@/components/CafeMenu/CafeMenu";
+import ReservationForm from "@/components/ReservationForm/ReservationForm";
+import AboutSection from "@/components/AboutSection/AboutSection";
+import SpacesSection from "@/components/SpacesSection/SpacesSection";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { getCmsMedia } from "@/lib/cms";
 
 // En Next.js 15, params es una Promesa
 export default async function Home(props: {
@@ -11,14 +12,25 @@ export default async function Home(props: {
 }) {
   // OBLIGATORIO: Esperar los params
   const { locale } = await props.params;
-  
+
+  // @cms-group "Home Page" @cms-label "Imagen Sección Espacios"
+  const spacesImage = (await getCmsMedia(
+    "home_spaces_image",
+    "/media/DSC01979.jpg",
+  )) as string;
   // @cms-group "Home Page" @cms-label "Fondo Sección de Reservas"
-  const reservationBg = await getCmsMedia("home_reservation_bg", "") as string;
+  const reservationBg = (await getCmsMedia(
+    "home_reservation_bg",
+    "",
+  )) as string;
 
   return (
     <main>
       <Hero />
       <AboutSection />
+      <ScrollReveal direction="up" delay={200}>
+        <SpacesSection imageSrc={spacesImage} />
+      </ScrollReveal>
       <ScrollReveal direction="up" delay={400}>
         <CafeMenu />
       </ScrollReveal>

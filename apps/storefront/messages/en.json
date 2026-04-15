@@ -13,6 +13,7 @@
     "experiences": "EXPERIENCES",
     "products": "PRODUCTS",
     "nosotros": "ABOUT US",
+    "spaces": "SPACES",
     "gift": "GIFT",
     "reserve": "RESERVE",
     "cart": "CART"
@@ -184,6 +185,26 @@
         "title": "The Dream Come True",
         "text": "This dream didn't start today… It started many years ago, in the hands of those who taught us to work, to believe… and Love.\n\nToday, some of those people are no longer here. But everything they left us… remains here.\n\nIn every decision, in every detail, their legacy is in timeless love. In how we choose to honor their work.\n\nAntica M&M is that. It is a way of telling them: we did it and today this dream, belongs to everyone."
       }
+    }
+  },
+  "Spaces": {
+    "title": "Our Spaces",
+    "description": "Discover the unique environments that make Antica a special place to enjoy unforgettable moments.",
+    "button": "View All Spaces",
+    "imageAlt": "Antica M&M Spaces",
+    "heroTitle": "Our Spaces",
+    "heroSubtitle": "Environments designed to create memorable experiences",
+    "space1": {
+      "title": "Main Hall",
+      "description": "Our main space combines elegance and comfort. With natural lighting, wooden furniture and details that evoke the warmth of the traditional coffee house."
+    },
+    "space2": {
+      "title": "Outdoor Terrace",
+      "description": "An outdoor oasis where the aroma of coffee mixes with the fresh breeze. Perfect for enjoying a good book or a quiet conversation."
+    },
+    "space3": {
+      "title": "Events Area",
+      "description": "Versatile space for special celebrations, coffee tastings, workshops and corporate events. Modern design with capacity for different configurations."
     }
   }
 }
