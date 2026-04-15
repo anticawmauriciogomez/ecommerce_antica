@@ -1,10 +1,6 @@
 .cafeMenuSection {
   position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   padding: 8rem 0;

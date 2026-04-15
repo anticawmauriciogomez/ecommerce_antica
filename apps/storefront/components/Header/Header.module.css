@@ -80,9 +80,10 @@
 }
 
 .logoText {
+  font-family: var(--font-antica);
   font-size: 2.2rem;
   letter-spacing: 2px;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   margin: 0;
   color: var(--text-primary);

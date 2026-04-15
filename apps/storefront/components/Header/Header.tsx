@@ -89,7 +89,7 @@ const Header = ({ logoUrl }: HeaderProps) => {
               {logoUrl ? (
                 <img src={logoUrl} alt="Antica Logo" className={styles.logoImage} style={{ height: '40px', width: 'auto' }} />
               ) : (
-                <h1 className={`${styles.logoText} text-serif`}>Antica</h1>
+                <h1 className={`${styles.logoText} text-serif`}>ANTICA</h1>
               )}
             </Link>
           </div>

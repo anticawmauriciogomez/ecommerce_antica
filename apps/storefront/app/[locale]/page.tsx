@@ -16,7 +16,7 @@ export default async function Home(props: {
   const reservationBg = await getCmsMedia("home_reservation_bg", "") as string;
 
   return (
-    <main style={{ overflowX: 'hidden' }}>
+    <main>
       <Hero />
       <AboutSection />
       <ScrollReveal direction="up" delay={400}>

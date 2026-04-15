@@ -6,39 +6,122 @@
       "group": "Identidad Visual",
       "source": "manual",
       "items": [
-        { "key": "site_logo", "label": "Logo de la Marca (Header)", "type": "single", "source": "manual" },
-        { "key": "site_favicon", "label": "Favicon / Icono del sitio", "type": "single", "source": "manual" }
+        {
+          "key": "site_logo",
+          "label": "Logo de la Marca (Header)",
+          "type": "single",
+          "source": "manual"
+        },
+        {
+          "key": "site_favicon",
+          "label": "Favicon / Icono del sitio",
+          "type": "single",
+          "source": "manual"
+        }
       ]
     },
     {
       "group": "Home Page",
       "source": "auto",
       "items": [
-        { "key": "home_hero_slider", "label": "Imagenes del Carrusel Principal (Hero)", "type": "gallery", "source": "auto", "file": "components/Hero/Hero.tsx" },
-        { "key": "home_about_image", "label": "Imagen de Sobre Nosotros", "type": "single", "source": "auto", "file": "components/AboutSection/AboutSection.tsx" },
-        { "key": "home_reservation_bg", "label": "Fondo Seccion de Reservas", "type": "single", "source": "auto", "file": "app/[locale]/page.tsx" }
+        {
+          "key": "home_about_image",
+          "label": "Imagen de Sobre Nosotros",
+          "type": "single",
+          "source": "auto",
+          "file": "components/AboutSection/AboutSection.tsx"
+        },
+        {
+          "key": "home_reservation_bg",
+          "label": "Fondo Seccion de Reservas",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/page.tsx"
+        },
+        {
+          "key": "home_hero_image",
+          "label": "Imagen Principal (Hero)",
+          "type": "single",
+          "source": "auto",
+          "file": "components/Hero/Hero.tsx"
+        }
       ]
     },
     {
       "group": "Cabeceras de Secciones Principales",
       "source": "auto",
       "items": [
-        { "key": "nosotros_hero", "label": "Fondo de Cabecera (Nosotros)", "type": "single", "source": "auto", "file": "app/[locale]/nosotros/page.tsx" },
-        { "key": "regala_hero", "label": "Fondo de Cabecera (Regalo)", "type": "single", "source": "auto", "file": "app/[locale]/regala/page.tsx" },
-        { "key": "experiencias_hero", "label": "Fondo de Cabecera (Experiencias)", "type": "single", "source": "auto", "file": "app/[locale]/experiencias/page.tsx" },
-        { "key": "checkout_hero", "label": "Fondo de Cabecera (Checkout)", "type": "single", "source": "auto", "file": "app/[locale]/checkout/page.tsx" }
+        {
+          "key": "nosotros_hero",
+          "label": "Fondo de Cabecera (Nosotros)",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/nosotros/page.tsx"
+        },
+        {
+          "key": "regala_hero",
+          "label": "Fondo de Cabecera (Regalo)",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/regala/page.tsx"
+        },
+        {
+          "key": "experiencias_hero",
+          "label": "Fondo de Cabecera (Experiencias)",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/experiencias/page.tsx"
+        },
+        {
+          "key": "checkout_hero",
+          "label": "Fondo de Cabecera (Checkout)",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/checkout/page.tsx"
+        }
       ]
     },
     {
       "group": "Pagina Nosotros (Historia Familiar)",
       "source": "auto",
       "items": [
-        { "key": "nosotros_don_luis_image", "label": "Retrato de Don Luis Ortega", "type": "single", "source": "auto", "file": "app/[locale]/nosotros/page.tsx" },
-        { "key": "nosotros_daughter_image", "label": "Retrato La Vision de Antica", "type": "single", "source": "auto", "file": "app/[locale]/nosotros/page.tsx" },
-        { "key": "nosotros_victor_image", "label": "Retrato Crezia Exportacion", "type": "single", "source": "auto", "file": "app/[locale]/nosotros/page.tsx" },
-        { "key": "nosotros_union_image", "label": "Imagen Union (Hermanos)", "type": "single", "source": "auto", "file": "app/[locale]/nosotros/page.tsx" },
-        { "key": "nosotros_family_image", "label": "Retrato Familiar (Pantalla Completa)", "type": "single", "source": "auto", "file": "app/[locale]/nosotros/page.tsx" }
+        {
+          "key": "nosotros_don_luis_image",
+          "label": "Retrato de Don Luis Ortega",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/nosotros/page.tsx"
+        },
+        {
+          "key": "nosotros_daughter_image",
+          "label": "Retrato La Vision de Antica",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/nosotros/page.tsx"
+        },
+        {
+          "key": "nosotros_victor_image",
+          "label": "Retrato Crezia Exportacion",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/nosotros/page.tsx"
+        },
+        {
+          "key": "nosotros_union_image",
+          "label": "Imagen Union (Hermanos)",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/nosotros/page.tsx"
+        },
+        {
+          "key": "nosotros_family_image",
+          "label": "Retrato Familiar (Pantalla Completa)",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/nosotros/page.tsx"
+        }
       ]
     }
-  ]
+  ],
+  "_lastSync": "2026-04-14T23:58:11.233Z"
 }

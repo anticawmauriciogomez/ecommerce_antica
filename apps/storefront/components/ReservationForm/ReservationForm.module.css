@@ -1,10 +1,7 @@
 .section {
   position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;          /* ← de 100vw a 100% */
+  /* eliminar left, right, margin-left, margin-right */
   background-color: var(--bg-secondary);
   color: var(--text-primary);
   padding: 8rem 2rem;

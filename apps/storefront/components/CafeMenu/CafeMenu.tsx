@@ -55,9 +55,10 @@ const CafeMenu = async () => {
             <div className={styles.itemContent}>
               <span className={styles.itemName}>{item.name[locale]}</span>
               {item.description && item.description[locale] && (
-                <span className={styles.itemDesc}>
-                  {item.description[locale]}
-                </span>
+                <span
+                  className={styles.itemDesc}
+                  dangerouslySetInnerHTML={{ __html: item.description[locale] }}
+                />
               )}
             </div>
             <span className={styles.itemPrice}>${item.price}</span>

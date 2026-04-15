@@ -1,11 +1,7 @@
 .hero {
   position: relative;
   height: 100vh;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,87 +14,22 @@
     color 0.3s ease;
 }
 
-.heroSliderContainer {
+.heroImageContainer {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
-  display: flex;
-  align-items: center;
   overflow: hidden;
 }
 
-.heroSliderTrack {
-  display: flex;
-  gap: 30px;
-  width: max-content;
-  animation: scrollLeft 45s linear infinite;
-  align-items: center;
-  padding: 0 30px;
-}
-
-.heroSliderTrack:hover {
-  animation-play-state: paused;
-}
-
-.heroSliderItem {
-  width: 280px;
-  height: 400px;
-  flex-shrink: 0;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-  transition:
-    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    filter 0.4s;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.heroSliderItem img {
+.heroSingleImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1s ease;
-}
-
-/* Clases dinámicas para la onda */
-.item1 {
-  transform: translateY(50px);
-}
-.item2 {
-  transform: translateY(10px);
-}
-.item3 {
-  transform: translateY(-40px);
-  height: 460px;
-  width: 320px;
-}
-.item4 {
-  transform: translateY(10px);
-}
-.item5 {
-  transform: translateY(50px);
-}
-
-.heroSliderItem:hover {
-  z-index: 10;
-  filter: brightness(1.2);
-}
-
-.heroSliderItem:hover img {
-  transform: scale(1.08);
-}
-
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .overlay {
@@ -245,15 +176,5 @@
     font-size: 0.9rem;
     letter-spacing: 2px;
     line-height: 1.3;
-  }
-
-  .heroSliderItem {
-    width: 200px;
-    height: 300px;
-  }
-
-  .item3 {
-    height: 350px;
-    width: 220px;
   }
 }

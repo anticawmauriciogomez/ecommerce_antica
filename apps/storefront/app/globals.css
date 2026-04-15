@@ -2,6 +2,7 @@
   /* Variables de las fuentes (inyectadas por Next.js desde fonts.ts) */
   --font-serif: "__FONT_FALLBACK__";
   --font-sans: "__FONT_FALLBACK__";
+  --font-antica: "__FONT_FALLBACK__";
 
   /* --- LIGHT THEME (DEFAULT) --- */
   --bg-primary: #f8f5f1; /* Beige claro del fondo */
