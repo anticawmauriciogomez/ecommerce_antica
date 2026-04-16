@@ -1,20 +1,28 @@
 // apps/storefront/next.config.js
-import createNextIntlPlugin from 'next-intl/plugin';
+import createNextIntlPlugin from "next-intl/plugin";
 
-const withNextIntl = createNextIntlPlugin('./i18n.ts');
+const withNextIntl = createNextIntlPlugin("./i18n.ts");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Required for some Next.js 16/Turbopack setups with next-intl
-    experimental: {
-        // any experimental flags here
+  experimental: {
+    // any experimental flags here
+  },
+  turbopack: {},
+  logging: {
+    fetches: {
+      fullUrl: true,
     },
-    turbopack: {},
-    logging: {
-        fetches: {
-            fullUrl: true,
-        },
-    },
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);

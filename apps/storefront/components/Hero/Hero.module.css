@@ -24,12 +24,43 @@
   overflow: hidden;
 }
 
+.heroImageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.heroImageWrapper.active {
+  opacity: 1;
+}
+
 .heroSingleImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroSingleImage {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transform-origin: center center;
   will-change: transform;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.heroSingleImage.active {
+  opacity: 1;
 }
 
 .overlay {

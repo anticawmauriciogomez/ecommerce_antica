@@ -17,6 +17,12 @@
           "label": "Favicon / Icono del sitio",
           "type": "single",
           "source": "manual"
+        },
+        {
+          "key": "footer_logo",
+          "label": "Logo del Footer",
+          "type": "single",
+          "source": "manual"
         }
       ]
     },
@@ -40,8 +46,8 @@
         },
         {
           "key": "home_hero_image",
-          "label": "Imagen Principal (Hero)",
-          "type": "single",
+          "label": "Imágenes del Hero (Carrusel)",
+          "type": "gallery",
           "source": "auto",
           "file": "components/Hero/Hero.tsx"
         },
@@ -73,9 +79,9 @@
           "file": "app/[locale]/regala/page.tsx"
         },
         {
-          "key": "experiencias_hero",
-          "label": "Fondo de Cabecera (Experiencias)",
-          "type": "single",
+          "key": "experiencias_hero_gallery",
+          "label": "Galería de Imágenes Hero (Experiencias)",
+          "type": "gallery",
           "source": "auto",
           "file": "app/[locale]/experiencias/page.tsx"
         },
@@ -162,7 +168,12 @@
           "file": "app/[locale]/espacios/page.tsx"
         }
       ]
+    },
+    {
+      "group": "Auto-descubiertos",
+      "source": "auto",
+      "items": []
     }
   ],
-  "_lastSync": "2026-04-15T04:33:23.135Z"
+  "_lastSync": "2026-04-16T03:19:07.586Z"
 }

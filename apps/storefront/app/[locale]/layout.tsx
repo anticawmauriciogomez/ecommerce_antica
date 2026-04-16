@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 import { cormorantGaramond, montserrat, abrilFatface } from "../fonts";
 import "../globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -112,6 +113,7 @@ export default async function LocaleLayout(props: {
           <NextIntlClientProvider messages={messages} locale={locale}>
             <Header logoUrl={logoUrl} />
             {children}
+            <Footer />
             <Toaster position="bottom-right" expand={false} richColors />
           </NextIntlClientProvider>
         </ThemeProvider>

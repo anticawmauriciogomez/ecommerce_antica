@@ -30,6 +30,15 @@
   object-fit: cover;
   transform-origin: center center;
   will-change: transform;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.heroImage.active {
+  opacity: 1;
 }
 
 .overlay {

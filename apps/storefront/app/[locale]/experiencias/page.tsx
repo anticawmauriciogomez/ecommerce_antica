@@ -59,18 +59,17 @@ export default async function ExperienciasPage() {
   const locale = await getLocale();
   const products: Product[] = await getExperienceProducts();
   const t = await getTranslations("ExperienciasPage");
-  // @cms-group "Cabeceras de Secciones" @cms-label "Fondo de Cabecera (Experiencias)"
-  const heroImage = (await getCmsMedia(
-    "experiencias_hero",
+  // @cms-group "Cabeceras de Secciones" @cms-label "Galería de Imágenes Hero (Experiencias)" @cms-type gallery
+  const heroImages = (await getCmsMedia("experiencias_hero_gallery", [
     "/media/DSC01073.jpg",
-  )) as string;
+  ])) as string[];
 
   return (
     <>
       <PageHero
         title={t("title")}
         subtitle={t("subtitle")}
-        backgroundImage={heroImage}
+        backgroundImages={heroImages}
       />
 
       {/* Products Section */}

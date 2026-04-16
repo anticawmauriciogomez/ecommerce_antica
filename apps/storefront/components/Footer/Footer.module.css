@@ -1,0 +1,194 @@
+.footer {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  padding: 4rem 0 2rem;
+  margin-top: 4rem;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  height: auto;
+  object-fit: contain;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  opacity: 0.8;
+  max-width: 280px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.links a {
+  color: var(--text-light);
+  opacity: 0.7;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
+}
+
+.links a:hover {
+  opacity: 1;
+  color: var(--accent-gold);
+}
+
+.social {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  background-color: var(--accent-gold);
+  color: var(--bg-dark);
+  transform: translateY(-3px);
+}
+
+.map {
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  min-height: 150px;
+}
+
+.map iframe {
+  display: block;
+}
+
+.mapLink {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.mapLink:hover {
+  background-color: var(--accent-gold);
+  color: var(--bg-dark);
+}
+
+.address {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  opacity: 0.7;
+  margin-top: 0.75rem;
+}
+
+.bottom {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  opacity: 0.5;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .brand {
+    text-align: center;
+    align-items: center;
+  }
+
+  .description {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .social {
+    justify-content: center;
+  }
+
+  .section {
+    align-items: center;
+    text-align: center;
+  }
+
+  .links {
+    align-items: center;
+  }
+}
