@@ -5,22 +5,6 @@ import PageHero from "@/components/PageHero/PageHero";
 import ProductsList from "@/components/ProductsList/ProductsList";
 import styles from "./ExperienciasPage.module.css";
 
-type Product = {
-  id: number;
-  name: Record<string, string>;
-  price: number;
-  image_url: string | null;
-  category_id: number;
-  description?: Record<string, string>;
-  available: boolean;
-  buyable: boolean;
-};
-
-type Category = {
-  id: number;
-  name: Record<string, string>;
-};
-
 async function getExperienceProducts() {
   const locale = await getLocale();
 

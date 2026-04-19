@@ -38,8 +38,7 @@ async function getProduct(id: string) {
 }
 
 export default function ProductDetailPage({ params }: PageProps) {
-  const [locale, setLocale] = useState<string>("es");
-  const [id, setId] = useState<string>("");
+  const [locale] = useState<string>("es");
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

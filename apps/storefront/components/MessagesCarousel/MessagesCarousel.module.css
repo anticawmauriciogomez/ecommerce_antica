@@ -31,7 +31,7 @@
   border: 1px solid var(--border-color);
   max-width: 800px;
   width: 100%;
-  min-height: 300px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -164,35 +164,33 @@
   }
 
   .container {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 
   .carouselRow {
-    flex-direction: column;
-    gap: 1rem;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
   }
 
   .arrow {
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+    flex-shrink: 0;
   }
 
   .arrowLeft {
-    margin-right: 0;
-    margin-bottom: 1rem;
-    align-self: center;
+    margin-right: 0.5rem;
   }
 
   .arrowRight {
-    margin-left: 0;
-    margin-top: 1rem;
-    align-self: center;
+    margin-left: 0.5rem;
   }
 
   .messageCard {
-    padding: 2rem;
-    min-height: 250px;
+    padding: 1.5rem;
+    height: 280px;
   }
 
   .messageTitle {

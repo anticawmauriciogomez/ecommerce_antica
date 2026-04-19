@@ -12,7 +12,7 @@ interface CheckoutUIProps {
 
 export default function CheckoutUI({ heroImage }: CheckoutUIProps) {
   const [currency, setCurrency] = useState("COP");
-  const { items, getTotalPrice, clearCart } = useCartStore();
+  const { items, getTotalPrice } = useCartStore();
   const t = useTranslations("Checkout");
   const locale = useLocale();
   const [loading, setLoading] = useState(false);

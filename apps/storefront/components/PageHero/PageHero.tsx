@@ -22,7 +22,7 @@ const PageHero: React.FC<PageHeroProps> = ({ slides }) => {
       ? slides
       : Array(3)
           .fill(slides[0])
-          .map((slide, index) => ({
+          .map((slide) => ({
             ...slide,
             // If more slides needed, keep same content but could customize
           }));

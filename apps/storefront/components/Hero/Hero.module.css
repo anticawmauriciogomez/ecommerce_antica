@@ -1,7 +1,7 @@
 .hero {
   position: relative;
-  height: 100vh;
   width: 100%;
+  aspect-ratio: 16 / 9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +30,9 @@
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transform-origin: center center;
   will-change: transform;
   opacity: 0;
@@ -79,11 +82,29 @@
 }
 
 .heroContent {
-  text-align: center;
-  max-width: 1200px;
+  position: relative;
+  width: 100%;
+  height: 100%;
   z-index: 2;
   pointer-events: none;
-  padding: 0 2rem;
+}
+
+.heroTextWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.heroTextWrapper.active {
+  opacity: 1;
 }
 
 .pointerAuto {
@@ -96,7 +117,7 @@
   margin-bottom: 2rem;
   line-height: 1.05;
   font-weight: 300;
-  max-width: 1200px;
+  text-align: center;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -109,9 +130,7 @@
   margin-bottom: 4rem;
   text-transform: uppercase;
   opacity: 0.9;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
   word-wrap: break-word;
   overflow-wrap: break-word;
   line-height: 1.4;
@@ -194,6 +213,11 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    height: 100vh;
+    aspect-ratio: auto;
+  }
+
   .heroContent {
     padding: 0 1rem;
   }

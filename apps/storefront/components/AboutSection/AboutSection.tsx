@@ -1,5 +1,4 @@
 ﻿import React from "react";
-import { Link } from "../../i18n/routing";
 import { ScrollReveal } from "../ScrollReveal";
 import { getCmsMedia, getCmsText } from "@/lib/cms";
 import MessagesCarousel from "../MessagesCarousel/MessagesCarousel";

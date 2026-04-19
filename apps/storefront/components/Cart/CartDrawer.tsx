@@ -5,6 +5,7 @@ import { getSettings } from "@/lib/cms";
 import { useState, useEffect } from "react";
 import styles from "./CartDrawer.module.css";
 import { useRouter } from "../../i18n/routing";
+import Image from "next/image";
 
 export const CartDrawer = ({
   isOpen,
@@ -53,10 +54,12 @@ export const CartDrawer = ({
           ) : (
             items.map((item) => (
               <div key={item.id} className={styles.item}>
-                <img
+                <Image
                   src={item.image_url || ""}
                   className={styles.itemImage}
                   alt=""
+                  width={80}
+                  height={80}
                 />
                 <div className={styles.itemInfo}>
                   <h4 className="text-serif">{item.name[locale]}</h4>

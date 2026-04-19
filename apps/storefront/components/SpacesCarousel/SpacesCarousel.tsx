@@ -13,14 +13,13 @@ interface Space {
 
 interface SpaceCardProps {
   space: Space;
-  t: any;
 }
 
 interface SpacesCarouselProps {
   spacesData?: Space[];
 }
 
-const SpaceCard: React.FC<SpaceCardProps> = ({ space, t }) => {
+const SpaceCard: React.FC<SpaceCardProps> = ({ space }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Cambiar imagen cada 10 segundos para esta tarjeta específica
@@ -143,7 +142,7 @@ const SpacesCarousel: React.FC<SpacesCarouselProps> = ({ spacesData }) => {
       <div className={styles.container}>
         <div className={styles.spacesGrid}>
           {spaces.map((space) => (
-            <SpaceCard key={space.id} space={space} t={t} />
+            <SpaceCard key={space.id} space={space} />
           ))}
         </div>
       </div>

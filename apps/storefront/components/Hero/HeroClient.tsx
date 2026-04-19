@@ -61,8 +61,6 @@ export function HeroClient({ slides }: HeroClientProps) {
     };
   }, [currentIndex]);
 
-  const currentSlide = extendedSlides[currentIndex];
-
   return (
     <section className={styles.hero}>
       <div className={styles.heroImageContainer}>
@@ -81,7 +79,7 @@ export function HeroClient({ slides }: HeroClientProps) {
               sizes="100vw"
               quality={85}
               priority={index === 0}
-              className="object-cover"
+              style={{ objectFit: "cover", objectPosition: "center" }}
             />
           </div>
         ))}
@@ -89,19 +87,24 @@ export function HeroClient({ slides }: HeroClientProps) {
 
       <div className={styles.overlay}></div>
 
-      <div className={`${styles.heroContent} ${styles.fadeIn}`}>
-        <h1 className={`${styles.heroTitle} text-serif`}>
-          {currentSlide.title}
-        </h1>
-        <p className={`${styles.heroSubtitle} text-sans`}>
-          {currentSlide.subtitle}
-        </p>
-        <a
-          href={currentSlide.buttonLink || "/es/nosotros"}
-          className={`${styles.btnPrimary} ${styles.pointerAuto}`}
-        >
-          {currentSlide.buttonText}
-        </a>
+      <div className={styles.heroContent}>
+        {extendedSlides.map((slide, index) => (
+          <div
+            key={index}
+            className={`${styles.heroTextWrapper} ${index === currentIndex ? styles.active : ""}`}
+          >
+            <h1 className={`${styles.heroTitle} text-serif`}>{slide.title}</h1>
+            <p className={`${styles.heroSubtitle} text-sans`}>
+              {slide.subtitle}
+            </p>
+            <a
+              href={slide.buttonLink || "/es/nosotros"}
+              className={`${styles.btnPrimary} ${styles.pointerAuto}`}
+            >
+              {slide.buttonText}
+            </a>
+          </div>
+        ))}
       </div>
     </section>
   );

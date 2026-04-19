@@ -19,7 +19,7 @@ async function getExperienceProducts() {
 
   try {
     // First, let's see what categories exist
-    const { data: allCats, error: catError } = await supabase
+    const { data: allCats, error: _catError } = await supabase
       .from("categories")
       .select("*");
 

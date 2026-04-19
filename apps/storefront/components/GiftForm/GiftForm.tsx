@@ -87,7 +87,7 @@ export default function GiftForm({ products, locale }: GiftFormProps) {
         recipientMessage: "",
         acceptTerms: false,
       });
-    } catch (error) {
+    } catch (_error) {
       setSubmitMessage(t("giftError"));
     } finally {
       setIsSubmitting(false);

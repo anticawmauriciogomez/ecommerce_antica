@@ -53,9 +53,6 @@ export default async function Home(props: {
       <ScrollReveal direction="up" delay={600} threshold={0.05}>
         <ReservationForm reservationBg={reservationBg} />
       </ScrollReveal>
-      <ScrollReveal direction="up" delay={600} threshold={0.05}>
-        <ReservationForm reservationBg={reservationBg} />
-      </ScrollReveal>
     </main>
   );
 }

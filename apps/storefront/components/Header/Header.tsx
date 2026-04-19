@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
+import Image from "next/image";
 import { Link as IntlLink, usePathname, useRouter } from "../../i18n/routing";
 import styles from "./Header.module.css";
 import { useCartStore } from "@/lib/cartStore";
@@ -119,18 +120,17 @@ const Header = ({ logoUrl }: HeaderProps) => {
               <button
                 onClick={() => setIsCartOpen(true)}
                 className={styles.cartBtn}
+                aria-label={`${t("cart")} (${mounted ? totalItems : 0} items)`}
               >
-                <img
+                <Image
                   src={`/cart-${theme === "light" ? "black" : "white"}.svg`}
                   alt="Cart"
-                  style={{
-                    width: "24px",
-                    height: "24px",
-                    marginRight: "8px",
-                    verticalAlign: "middle",
-                  }}
+                  width={20}
+                  height={20}
                 />
-                {t("cart")} ({mounted ? totalItems : 0})
+                {mounted && totalItems > 0 && (
+                  <span className={styles.cartBadge}>{totalItems}</span>
+                )}
               </button>
 
               <button onClick={toggleLanguage} className={styles.langSelector}>
@@ -198,18 +198,17 @@ const Header = ({ logoUrl }: HeaderProps) => {
                 setIsMenuOpen(false);
               }}
               className={styles.mobileNavBtn}
+              aria-label={`${t("cart")} (${mounted ? totalItems : 0} items)`}
             >
-              <img
+              <Image
                 src={`/cart-${theme === "light" ? "black" : "white"}.svg`}
                 alt="Cart"
-                style={{
-                  width: "24px",
-                  height: "24px",
-                  marginRight: "8px",
-                  verticalAlign: "middle",
-                }}
+                width={20}
+                height={20}
               />
-              {t("cart")} ({mounted ? totalItems : 0})
+              {mounted && totalItems > 0 && (
+                <span className={styles.cartBadge}>{totalItems}</span>
+              )}
             </button>
 
             <button
