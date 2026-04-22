@@ -22,7 +22,8 @@
   border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(18, 16, 14, 0.12);
-  position: fixed;
+  position: sticky;
+  top: 150px;
 }
 
 .image {
@@ -84,7 +85,9 @@
   }
 
   .imageContainer {
-    position: static;
+    position: sticky;
+    top: 150px;
+    width: auto;
   }
 
   .title {

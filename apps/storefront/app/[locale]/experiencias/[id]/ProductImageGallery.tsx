@@ -7,7 +7,6 @@ interface ProductImageGalleryProps {
   alt: string;
   currentIndex: number;
   onIndexChange: (index: number) => void;
-  top?: number;
 }
 
 export default function ProductImageGallery({
@@ -15,7 +14,6 @@ export default function ProductImageGallery({
   alt,
   currentIndex,
   onIndexChange,
-  top,
 }: ProductImageGalleryProps) {
   const handleThumbnailClick = (index: number) => {
     onIndexChange(index);
@@ -26,7 +24,7 @@ export default function ProductImageGallery({
   }
 
   return (
-    <div className={styles.gallery} style={top ? { top: `${top}px` } : {}}>
+    <div className={styles.gallery}>
       {/* Main Image */}
       <div className={styles.mainImageContainer}>
         <img

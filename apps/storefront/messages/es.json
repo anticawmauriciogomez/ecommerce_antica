@@ -198,6 +198,18 @@
     "space3": {
       "title": "Área de Eventos",
       "description": "Espacio versátil para celebraciones especiales, catas de café, talleres y eventos corporativos. Diseño moderno con capacidad para diferentes configuraciones."
+    },
+    "space4": {
+      "title": "Atelier de Bebidas",
+      "description": "Nuestro taller dedicado a la creación y experimentación de bebidas únicas. Un espacio creativo donde la innovación se encuentra con la tradición cafetera."
+    },
+    "space5": {
+      "title": "Espacios Románticos",
+      "description": "Ambientes íntimos y acogedores perfectos para momentos especiales. Iluminación suave, mesas para dos y un ambiente que invita al romance."
+    },
+    "space6": {
+      "title": "Parqueadero",
+      "description": "Estacionamiento seguro y conveniente para nuestros visitantes. Amplio espacio con vigilancia las 24 horas para mayor tranquilidad."
     }
   },
   "Chef": {

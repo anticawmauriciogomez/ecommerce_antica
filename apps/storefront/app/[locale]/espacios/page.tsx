@@ -38,6 +38,24 @@ export default async function SpacesPage() {
     "/media/DSC01979.jpg",
     "/media/DSC01841.jpg",
   ]);
+  // @cms-group "Página Espacios" @cms-label "Imágenes Espacio 4" @cms-type gallery
+  const space4Images = await getCmsMedia("espacios_imagenes_4", [
+    "/media/DSC01979.jpg",
+    "/media/DSC01841.jpg",
+    "/media/DSC01839.jpg",
+  ]);
+  // @cms-group "Página Espacios" @cms-label "Imágenes Espacio 5" @cms-type gallery
+  const space5Images = await getCmsMedia("espacios_imagenes_5", [
+    "/media/DSC01707.jpg",
+    "/media/DSC01073.jpg",
+    "/media/DSC01454.jpg",
+  ]);
+  // @cms-group "Página Espacios" @cms-label "Imágenes Espacio 6" @cms-type gallery
+  const space6Images = await getCmsMedia("espacios_imagenes_6", [
+    "/media/DSC01209.jpg",
+    "/media/DSC01203.jpg",
+    "/media/DSC01979.jpg",
+  ]);
 
   const spacesData = [
     {
@@ -63,6 +81,30 @@ export default async function SpacesPage() {
       images: Array.isArray(space3Images)
         ? space3Images
         : [space3Images].filter(Boolean),
+    },
+    {
+      id: "4",
+      title: t("space4.title"),
+      description: t("space4.description"),
+      images: Array.isArray(space4Images)
+        ? space4Images
+        : [space4Images].filter(Boolean),
+    },
+    {
+      id: "5",
+      title: t("space5.title"),
+      description: t("space5.description"),
+      images: Array.isArray(space5Images)
+        ? space5Images
+        : [space5Images].filter(Boolean),
+    },
+    {
+      id: "6",
+      title: t("space6.title"),
+      description: t("space6.description"),
+      images: Array.isArray(space6Images)
+        ? space6Images
+        : [space6Images].filter(Boolean),
     },
   ];
 

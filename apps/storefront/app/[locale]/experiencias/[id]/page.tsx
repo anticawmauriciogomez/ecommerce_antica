@@ -39,7 +39,7 @@ export default function ProductDetailPage({ params }: PageProps) {
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [galleryTop, setGalleryTop] = useState(50);
+  const [isMobile, setIsMobile] = useState(false);
   const descriptionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -55,6 +55,15 @@ export default function ProductDetailPage({ params }: PageProps) {
     };
     fetchData();
   }, [params]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 900);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     if (!product || !descriptionRef.current) return;
@@ -81,13 +90,12 @@ export default function ProductDetailPage({ params }: PageProps) {
           Math.min(1, visibleHeight / descriptionHeight),
         );
 
-        // Divide into parts based on number of images
-        const imagesCount = product.images.length;
-        const index = Math.floor(scrollProgress * imagesCount);
-        setCurrentImageIndex(Math.max(0, Math.min(imagesCount - 1, index)));
-
-        // Move gallery with scroll
-        setGalleryTop(50 + scrollY * 0.2); // Adjust factor
+        // Divide into parts based on number of images (disabled)
+        // if (!isMobile) {
+        //   const imagesCount = product.images.length;
+        //   const index = Math.floor(scrollProgress * imagesCount);
+        //   setCurrentImageIndex(Math.max(0, Math.min(imagesCount - 1, index)));
+        // }
       }
     };
 
@@ -95,37 +103,17 @@ export default function ProductDetailPage({ params }: PageProps) {
     handleScroll(); // Initial call
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [product]);
+  }, [product, isMobile]);
 
-  // Auto-change if description is short (fits in viewport without scrolling)
+  // Auto-slide images
   useEffect(() => {
     if (!product || product.images.length <= 1) return;
 
-    const checkAutoSlide = () => {
-      const description = descriptionRef.current;
-      if (description) {
-        const rect = description.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        // If description fits entirely in viewport, enable auto-slide
-        if (
-          rect.height <= windowHeight &&
-          rect.top >= 0 &&
-          rect.bottom <= windowHeight
-        ) {
-          const interval = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % product.images.length);
-          }, 3000);
-          return () => clearInterval(interval);
-        }
-      }
-    };
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % product.images.length);
+    }, 3000);
 
-    const handleScroll = () => checkAutoSlide();
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    checkAutoSlide(); // Initial check
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => clearInterval(interval);
   }, [product]);
 
   if (loading) {
@@ -143,13 +131,14 @@ export default function ProductDetailPage({ params }: PageProps) {
       <div className={styles.container}>
         <div className={styles.grid}>
           {/* Columna Imagen */}
-          <ProductImageGallery
-            images={product.images}
-            alt={product.name[locale]}
-            currentIndex={currentImageIndex}
-            onIndexChange={setCurrentImageIndex}
-            top={galleryTop}
-          />
+          <div className={styles.imageContainer}>
+            <ProductImageGallery
+              images={product.images}
+              alt={product.name[locale]}
+              currentIndex={currentImageIndex}
+              onIndexChange={setCurrentImageIndex}
+            />
+          </div>
 
           {/* Columna Información */}
           <div className={styles.info}>

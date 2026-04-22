@@ -66,6 +66,7 @@ export default function CafeMenu() {
         `,
         )
         .eq("products.available", true)
+        .eq("exclude_from_menu", false)
         .order("sort_order", { ascending: true })
         .order("id", { foreignTable: "products", ascending: true });
 

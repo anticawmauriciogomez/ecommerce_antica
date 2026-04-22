@@ -104,6 +104,13 @@
           "type": "single",
           "source": "auto",
           "file": "app/[locale]/checkout/page.tsx"
+        },
+        {
+          "key": "espacios_hero",
+          "label": "Fondo de Cabecera (Espacios)",
+          "type": "single",
+          "source": "auto",
+          "file": "app/[locale]/espacios/page.tsx"
         }
       ]
     },
@@ -158,6 +165,27 @@
           "type": "gallery",
           "source": "auto",
           "file": "app/[locale]/espacios/page.tsx"
+        },
+        {
+          "key": "espacios_imagenes_4",
+          "label": "Imágenes Espacio 4",
+          "source": "auto",
+          "file": "app/[locale]/espacios/page.tsx",
+          "type": "gallery"
+        },
+        {
+          "key": "espacios_imagenes_5",
+          "label": "Imágenes Espacio 5",
+          "source": "auto",
+          "file": "app/[locale]/espacios/page.tsx",
+          "type": "gallery"
+        },
+        {
+          "key": "espacios_imagenes_6",
+          "label": "Imágenes Espacio 6",
+          "source": "auto",
+          "file": "app/[locale]/espacios/page.tsx",
+          "type": "gallery"
         }
       ]
     }
@@ -566,5 +594,5 @@
       ]
     }
   ],
-  "_lastSync": "2026-04-19T04:20:37.614Z"
+  "_lastSync": "2026-04-22T14:49:09.435Z"
 }

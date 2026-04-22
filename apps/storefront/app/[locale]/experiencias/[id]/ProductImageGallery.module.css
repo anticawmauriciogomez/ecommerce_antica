@@ -81,3 +81,10 @@
   height: 100%;
   object-fit: cover;
 }
+
+@media (max-width: 900px) {
+  .mainImageContainer {
+    aspect-ratio: 3/4;
+    height: 40vh;
+  }
+}

@@ -198,6 +198,18 @@
     "space3": {
       "title": "Events Area",
       "description": "Versatile space for special celebrations, coffee tastings, workshops and corporate events. Modern design with capacity for different configurations."
+    },
+    "space4": {
+      "title": "Beverage Atelier",
+      "description": "Our workshop dedicated to the creation and experimentation of unique beverages. A creative space where innovation meets coffee tradition."
+    },
+    "space5": {
+      "title": "Romantic Spaces",
+      "description": "Intimate and cozy environments perfect for special moments. Soft lighting, tables for two and an atmosphere that invites romance."
+    },
+    "space6": {
+      "title": "Parking",
+      "description": "Safe and convenient parking for our visitors. Spacious area with 24-hour surveillance for greater peace of mind."
     }
   },
   "Chef": {

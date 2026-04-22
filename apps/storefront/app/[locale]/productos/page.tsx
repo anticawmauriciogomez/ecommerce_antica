@@ -54,12 +54,37 @@ async function getProductsAndCategories() {
 
 export default async function ProductosPage() {
   const locale = await getLocale();
-  const { products, categories } = await getProductsAndCategories();
-  const t = await getTranslations("ProductosPage");
+
+  // Add error handling for data fetching
+  let products: any[] = [];
+  let categories: any[] = [];
+  try {
+    const data = await getProductsAndCategories();
+    products = data.products || [];
+    categories = data.categories || [];
+  } catch (error) {
+    console.error("Error loading products and categories:", error);
+  }
+
+  let t;
+  try {
+    t = await getTranslations("ProductosPage");
+  } catch (error) {
+    console.error("Error loading translations:", error);
+    // Fallback translations
+    t = (key: string) => key;
+  }
+
   // @cms-group "Cabeceras de Secciones" @cms-label "Galería de Imágenes Hero (Productos)" @cms-type gallery
-  const heroImages = (await getCmsMedia("productos_hero_gallery", [
-    "/media/DSC01073.jpg",
-  ])) as string[];
+  let heroImages: string[] = ["/media/DSC01073.jpg"];
+  try {
+    const cmsImages = await getCmsMedia("productos_hero_gallery", [
+      "/media/DSC01073.jpg",
+    ]);
+    heroImages = Array.isArray(cmsImages) ? cmsImages : ["/media/DSC01073.jpg"];
+  } catch (error) {
+    console.error("Error loading hero images:", error);
+  }
 
   return (
     <>

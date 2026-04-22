@@ -141,6 +141,40 @@ export const baseDictionaryEs = {
       },
     },
   },
+  Spaces: {
+    heroTitle: "Nuestros Espacios",
+    heroSubtitle: "Ambientes diseñados para crear experiencias memorables",
+    space1: {
+      title: "Sala Principal",
+      description:
+        "Nuestro espacio principal combina elegancia y comodidad. Con iluminación natural, muebles de madera y detalles que evocan la calidez de la casa cafetera tradicional.",
+    },
+    space2: {
+      title: "Terraza Exterior",
+      description:
+        "Un oasis al aire libre donde el aroma del café se mezcla con la brisa fresca. Perfecto para disfrutar de un buen libro o una conversación tranquila.",
+    },
+    space3: {
+      title: "Área de Eventos",
+      description:
+        "Espacio versátil para celebraciones especiales, catas de café, talleres y eventos corporativos. Diseño moderno con capacidad para diferentes configuraciones.",
+    },
+    space4: {
+      title: "Atelier de Bebidas",
+      description:
+        "Nuestro taller dedicado a la creación y experimentación de bebidas únicas. Un espacio creativo donde la innovación se encuentra con la tradición cafetera.",
+    },
+    space5: {
+      title: "Espacios Románticos",
+      description:
+        "Ambientes íntimos y acogedores perfectos para momentos especiales. Iluminación suave, mesas para dos y un ambiente que invita al romance.",
+    },
+    space6: {
+      title: "Parqueadero",
+      description:
+        "Estacionamiento seguro y conveniente para nuestros visitantes. Amplio espacio con vigilancia las 24 horas para mayor tranquilidad.",
+    },
+  },
   General: {
     announcement_schedule:
       "Horarios de atención: 9:30 am a 9 pm. Lunes cerrado.",
@@ -283,6 +317,40 @@ export const baseDictionaryEn = {
         title: "The Dream Come True",
         text: "This dream didn't start today… It started many years ago, in the hands of those who taught us to work, to believe… and Love.\n\nToday, some of those people are no longer here. But everything they left us… remains here.\n\nIn every decision, in every detail, their legacy is in timeless love. In how we choose to honor their work.\n\nAntica M&M is that. It is a way of telling them: we did it and today this dream, belongs to everyone.",
       },
+    },
+  },
+  Spaces: {
+    heroTitle: "Our Spaces",
+    heroSubtitle: "Environments designed to create memorable experiences",
+    space1: {
+      title: "Main Hall",
+      description:
+        "Our main space combines elegance and comfort. With natural lighting, wooden furniture and details that evoke the warmth of the traditional coffee house.",
+    },
+    space2: {
+      title: "Outdoor Terrace",
+      description:
+        "An outdoor oasis where the aroma of coffee mixes with the fresh breeze. Perfect for enjoying a good book or a quiet conversation.",
+    },
+    space3: {
+      title: "Events Area",
+      description:
+        "Versatile space for special celebrations, coffee tastings, workshops and corporate events. Modern design with capacity for different configurations.",
+    },
+    space4: {
+      title: "Beverage Atelier",
+      description:
+        "Our workshop dedicated to the creation and experimentation of unique beverages. A creative space where innovation meets coffee tradition.",
+    },
+    space5: {
+      title: "Romantic Spaces",
+      description:
+        "Intimate and cozy environments perfect for special moments. Soft lighting, tables for two and an atmosphere that invites romance.",
+    },
+    space6: {
+      title: "Parking",
+      description:
+        "Safe and convenient parking for our visitors. Spacious area with 24-hour surveillance for greater peace of mind.",
     },
   },
   General: {

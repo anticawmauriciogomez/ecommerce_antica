@@ -12,6 +12,21 @@ export const mediaSlots = [
     ],
   },
   {
+    group: "Cabeceras de Secciones",
+    items: [
+      {
+        key: "checkout_hero",
+        label: "Fondo de Cabecera (Checkout)",
+        type: "single",
+      },
+      {
+        key: "espacios_hero",
+        label: "Fondo de Cabecera (Espacios)",
+        type: "single",
+      },
+    ],
+  },
+  {
     group: "Home Page",
     items: [
       {
@@ -83,6 +98,46 @@ export const mediaSlots = [
         key: "nosotros_family_image",
         label: "Retrato Familiar (Pantalla Completa)",
         type: "single",
+      },
+    ],
+  },
+  {
+    group: "Página Espacios",
+    items: [
+      {
+        key: "espacios_hero",
+        label: "Fondo de Cabecera (Espacios)",
+        type: "single",
+      },
+      {
+        key: "espacios_imagenes_1",
+        label: "Imágenes Espacio 1",
+        type: "gallery",
+      },
+      {
+        key: "espacios_imagenes_2",
+        label: "Imágenes Espacio 2",
+        type: "gallery",
+      },
+      {
+        key: "espacios_imagenes_3",
+        label: "Imágenes Espacio 3",
+        type: "gallery",
+      },
+      {
+        key: "espacios_imagenes_4",
+        label: "Imágenes Espacio 4",
+        type: "gallery",
+      },
+      {
+        key: "espacios_imagenes_5",
+        label: "Imágenes Espacio 5",
+        type: "gallery",
+      },
+      {
+        key: "espacios_imagenes_6",
+        label: "Imágenes Espacio 6",
+        type: "gallery",
       },
     ],
   },
