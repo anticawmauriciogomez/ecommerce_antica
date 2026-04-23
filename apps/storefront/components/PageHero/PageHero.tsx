@@ -13,9 +13,10 @@ interface Slide {
 
 interface PageHeroProps {
   slides: Slide[];
+  className?: string;
 }
 
-const PageHero: React.FC<PageHeroProps> = ({ slides }) => {
+const PageHero: React.FC<PageHeroProps> = ({ slides, className = "" }) => {
   // Ensure at least 3 slides by repeating if necessary
   const extendedSlides =
     slides.length >= 3
@@ -70,7 +71,7 @@ const PageHero: React.FC<PageHeroProps> = ({ slides }) => {
   const currentSlide = extendedSlides[currentIndex];
 
   return (
-    <section className={styles.hero}>
+    <section className={`${styles.hero} ${className}`}>
       <div className={styles.heroImageContainer}>
         {extendedSlides.map((slide, index) => (
           <img

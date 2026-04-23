@@ -2,12 +2,13 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   background-color: var(--accent-gold);
   padding: 6px 0;
   text-align: center;
   border-top: 1px solid var(--border-color);
   z-index: 1000;
+  overflow: hidden;
 }
 
 .text {

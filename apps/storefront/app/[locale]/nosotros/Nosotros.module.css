@@ -4,6 +4,13 @@
     color: var(--text-primary);
 }
 
+.nosotrosHero {
+    --hero-title-size: 4.4rem;
+    --hero-subtitle-size: 0.8rem;
+    --hero-title-size-mobile: 2.24rem;
+    --hero-subtitle-size-mobile: 0.72rem;
+}
+
 .hero {
     position: relative;
     height: 80vh;

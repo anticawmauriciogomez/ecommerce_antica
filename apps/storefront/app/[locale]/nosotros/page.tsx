@@ -49,6 +49,7 @@ export default async function NosotrosPage({ params }: PageProps) {
   return (
     <div className={styles.wrapper}>
       <PageHero
+        className={styles.nosotrosHero}
         slides={[
           {
             image: heroImage,
