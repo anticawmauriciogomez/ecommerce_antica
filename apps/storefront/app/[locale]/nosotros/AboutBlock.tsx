@@ -16,8 +16,14 @@ export const AboutBlock = ({ title, text, image, reverse = false }: AboutBlockPr
                     <img src={image} alt={title} loading="lazy" />
                 </div>
                 <div className={styles.blockContent}>
-                    <h3 className="text-serif">{title}</h3>
-                    <p className="text-sans">{text}</p>
+                    <h3
+                        className="text-serif"
+                        dangerouslySetInnerHTML={{ __html: title }}
+                    />
+                    <p
+                        className="text-sans"
+                        dangerouslySetInnerHTML={{ __html: text }}
+                    />
                 </div>
             </div>
         </ScrollReveal>

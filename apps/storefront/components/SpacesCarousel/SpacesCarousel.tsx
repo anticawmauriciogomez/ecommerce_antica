@@ -85,8 +85,14 @@ const SpaceCard: React.FC<SpaceCardProps> = ({ space }) => {
       </div>
 
       <div className={styles.cardContent}>
-        <h3 className={styles.cardTitle}>{space.title}</h3>
-        <p className={styles.cardDescription}>{space.description}</p>
+        <h3
+          className={styles.cardTitle}
+          dangerouslySetInnerHTML={{ __html: space.title }}
+        />
+        <p
+          className={styles.cardDescription}
+          dangerouslySetInnerHTML={{ __html: space.description }}
+        />
       </div>
     </div>
   );
@@ -99,8 +105,8 @@ const SpacesCarousel: React.FC<SpacesCarouselProps> = ({ spacesData }) => {
   const defaultSpaces: Space[] = [
     {
       id: "1",
-      title: t("space1.title"),
-      description: t("space1.description"),
+      title: t.raw("space1.title"),
+      description: t.raw("space1.description"),
       images: [
         "/media/DSC01979.jpg",
         "/media/DSC01841.jpg",
@@ -111,8 +117,8 @@ const SpacesCarousel: React.FC<SpacesCarouselProps> = ({ spacesData }) => {
     },
     {
       id: "2",
-      title: t("space2.title"),
-      description: t("space2.description"),
+      title: t.raw("space2.title"),
+      description: t.raw("space2.description"),
       images: [
         "/media/DSC01707.jpg",
         "/media/DSC01073.jpg",
@@ -123,8 +129,8 @@ const SpacesCarousel: React.FC<SpacesCarouselProps> = ({ spacesData }) => {
     },
     {
       id: "3",
-      title: t("space3.title"),
-      description: t("space3.description"),
+      title: t.raw("space3.title"),
+      description: t.raw("space3.description"),
       images: [
         "/media/DSC01209.jpg",
         "/media/DSC01203.jpg",

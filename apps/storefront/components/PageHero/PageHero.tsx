@@ -89,12 +89,14 @@ const PageHero: React.FC<PageHeroProps> = ({ slides, className = "" }) => {
       </div>
       <div className={styles.overlay}></div>
       <div className={`${styles.heroContent} fadeIn`}>
-        <h1 className={`${styles.heroTitle} text-serif`}>
-          {currentSlide.title}
-        </h1>
-        <p className={`${styles.heroSubtitle} text-sans`}>
-          {currentSlide.subtitle}
-        </p>
+        <h1
+          className={`${styles.heroTitle} text-serif`}
+          dangerouslySetInnerHTML={{ __html: currentSlide.title }}
+        />
+        <p
+          className={`${styles.heroSubtitle} text-sans`}
+          dangerouslySetInnerHTML={{ __html: currentSlide.subtitle }}
+        />
         {currentSlide.buttonText && currentSlide.buttonLink && (
           <a href={currentSlide.buttonLink} className={styles.heroButton}>
             {currentSlide.buttonText}

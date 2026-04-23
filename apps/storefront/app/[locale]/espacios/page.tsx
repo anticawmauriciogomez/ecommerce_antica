@@ -60,48 +60,48 @@ export default async function SpacesPage() {
   const spacesData = [
     {
       id: "1",
-      title: t("space1.title"),
-      description: t("space1.description"),
+      title: t.raw("space1.title"),
+      description: t.raw("space1.description"),
       images: Array.isArray(space1Images)
         ? space1Images
         : [space1Images].filter(Boolean),
     },
     {
       id: "2",
-      title: t("space2.title"),
-      description: t("space2.description"),
+      title: t.raw("space2.title"),
+      description: t.raw("space2.description"),
       images: Array.isArray(space2Images)
         ? space2Images
         : [space2Images].filter(Boolean),
     },
     {
       id: "3",
-      title: t("space3.title"),
-      description: t("space3.description"),
+      title: t.raw("space3.title"),
+      description: t.raw("space3.description"),
       images: Array.isArray(space3Images)
         ? space3Images
         : [space3Images].filter(Boolean),
     },
     {
       id: "4",
-      title: t("space4.title"),
-      description: t("space4.description"),
+      title: t.raw("space4.title"),
+      description: t.raw("space4.description"),
       images: Array.isArray(space4Images)
         ? space4Images
         : [space4Images].filter(Boolean),
     },
     {
       id: "5",
-      title: t("space5.title"),
-      description: t("space5.description"),
+      title: t.raw("space5.title"),
+      description: t.raw("space5.description"),
       images: Array.isArray(space5Images)
         ? space5Images
         : [space5Images].filter(Boolean),
     },
     {
       id: "6",
-      title: t("space6.title"),
-      description: t("space6.description"),
+      title: t.raw("space6.title"),
+      description: t.raw("space6.description"),
       images: Array.isArray(space6Images)
         ? space6Images
         : [space6Images].filter(Boolean),
@@ -114,8 +114,8 @@ export default async function SpacesPage() {
         slides={[
           {
             image: heroImage,
-            title: t("heroTitle"),
-            subtitle: t("heroSubtitle"),
+            title: t.raw("heroTitle"),
+            subtitle: t.raw("heroSubtitle"),
           },
         ]}
       />

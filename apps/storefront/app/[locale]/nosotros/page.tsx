@@ -53,8 +53,8 @@ export default async function NosotrosPage({ params }: PageProps) {
         slides={[
           {
             image: heroImage,
-            title: t("heroTitle"),
-            subtitle: t("heroSubtitle"),
+            title: t.raw("heroTitle"),
+            subtitle: t.raw("heroSubtitle"),
           },
         ]}
       />
@@ -64,13 +64,19 @@ export default async function NosotrosPage({ params }: PageProps) {
         <section className={styles.introHistory}>
           <div className={styles.container}>
             <ScrollReveal direction="right" delay={400}>
-              <h2 className="text-serif text-5xl">{t("historyTitle")}</h2>
+              <h2
+                className="text-serif text-5xl"
+                dangerouslySetInnerHTML={{ __html: t.raw("historyTitle") }}
+              />
             </ScrollReveal>
             <ScrollReveal direction="up" delay={600}>
               <div className={styles.divider} />
             </ScrollReveal>
             <ScrollReveal direction="fade" delay={800}>
-              <p className={styles.historyBody}>{t("historyText")}</p>
+              <p
+                className={styles.historyBody}
+                dangerouslySetInnerHTML={{ __html: t.raw("historyText") }}
+              />
             </ScrollReveal>
           </div>
         </section>
@@ -81,23 +87,23 @@ export default async function NosotrosPage({ params }: PageProps) {
         <section className={styles.blocksSection}>
           {/* Don Luis */}
           <AboutBlock
-            title={t("sections.luis.title")}
-            text={t("sections.luis.text")}
+            title={t.raw("sections.luis.title")}
+            text={t.raw("sections.luis.text")}
             image={luisImage}
           />
 
           {/* La Hija - Antica */}
           <AboutBlock
-            title={t("sections.daughter.title")}
-            text={t("sections.daughter.text")}
+            title={t.raw("sections.daughter.title")}
+            text={t.raw("sections.daughter.text")}
             image={hijaImage}
             reverse
           />
 
           {/* Víctor - Crezia */}
           <AboutBlock
-            title={t("sections.victor.title")}
-            text={t("sections.victor.text")}
+            title={t.raw("sections.victor.title")}
+            text={t.raw("sections.victor.text")}
             image={victorImage}
           />
         </section>
@@ -110,8 +116,11 @@ export default async function NosotrosPage({ params }: PageProps) {
             <div className={styles.unionContent}>
               <ScrollReveal direction="right" delay={800}>
                 <div className={styles.unionText}>
-                  <h2 className="text-serif">{t("sections.union.title")}</h2>
-                  <p>{t("sections.union.text")}</p>
+                  <h2
+                    className="text-serif"
+                    dangerouslySetInnerHTML={{ __html: t.raw("sections.union.title") }}
+                  />
+                  <p dangerouslySetInnerHTML={{ __html: t.raw("sections.union.text") }} />
                 </div>
               </ScrollReveal>
               <ScrollReveal direction="left" delay={1000}>
@@ -132,8 +141,11 @@ export default async function NosotrosPage({ params }: PageProps) {
             <div className={styles.familyOverlay}>
               <ScrollReveal direction="up" delay={1000}>
                 <div className={styles.familyText}>
-                  <h2 className="text-serif">{t("sections.family.title")}</h2>
-                  <p>{t("sections.family.text")}</p>
+                  <h2
+                    className="text-serif"
+                    dangerouslySetInnerHTML={{ __html: t.raw("sections.family.title") }}
+                  />
+                  <p dangerouslySetInnerHTML={{ __html: t.raw("sections.family.text") }} />
                 </div>
               </ScrollReveal>
             </div>
@@ -146,34 +158,23 @@ export default async function NosotrosPage({ params }: PageProps) {
         <section className={styles.inaugurationSection}>
           <div className={styles.container}>
             <ScrollReveal direction="right" delay={1200}>
-              <h2 className="text-serif">{t("sections.inauguration.title")}</h2>
+              <h2
+                className="text-serif"
+                dangerouslySetInnerHTML={{
+                  __html: t.raw("sections.inauguration.title"),
+                }}
+              />
             </ScrollReveal>
             <ScrollReveal direction="up" delay={1400}>
               <div className={styles.divider} />
             </ScrollReveal>
             <ScrollReveal direction="fade" delay={1600}>
-              <div className={styles.inaugurationText}>
-                {t("sections.inauguration.text")
-                  .split("\n\n")
-                  .map((paragraph, index) => (
-                    <ScrollReveal
-                      key={index}
-                      direction="up"
-                      delay={1800 + index * 300}
-                    >
-                      <p className={styles.inaugurationParagraph}>
-                        {paragraph.split("\n").map((line, lineIndex) => (
-                          <span key={lineIndex}>
-                            {line}
-                            {lineIndex < paragraph.split("\n").length - 1 && (
-                              <br />
-                            )}
-                          </span>
-                        ))}
-                      </p>
-                    </ScrollReveal>
-                  ))}
-              </div>
+              <div
+                className={styles.inaugurationText}
+                dangerouslySetInnerHTML={{
+                  __html: t.raw("sections.inauguration.text"),
+                }}
+              ></div>
             </ScrollReveal>
           </div>
         </section>

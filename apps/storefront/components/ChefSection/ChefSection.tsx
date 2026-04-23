@@ -31,8 +31,14 @@ export default async function ChefSection({ locale }: ChefSectionProps) {
             <img src={imageSrc} alt={title} className={styles.image} />
           </div>
           <div className={styles.content}>
-            <h2 className={styles.title}>{title}</h2>
-            <p className={styles.description}>{description}</p>
+            <h2
+              className={styles.title}
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
+            <p
+              className={styles.description}
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
             <Link href="/chef">
               <button className={styles.button}>{buttonText}</button>
             </Link>

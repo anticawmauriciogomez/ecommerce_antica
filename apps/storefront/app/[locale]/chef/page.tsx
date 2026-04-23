@@ -42,24 +42,24 @@ export default async function ChefPage() {
   const chefData = [
     {
       id: "1",
-      title: t("space1.title"),
-      description: t("space1.description"),
+      title: t.raw("space1.title"),
+      description: t.raw("space1.description"),
       images: Array.isArray(chef1Images)
         ? chef1Images
         : [chef1Images].filter(Boolean),
     },
     {
       id: "2",
-      title: t("space2.title"),
-      description: t("space2.description"),
+      title: t.raw("space2.title"),
+      description: t.raw("space2.description"),
       images: Array.isArray(chef2Images)
         ? chef2Images
         : [chef2Images].filter(Boolean),
     },
     {
       id: "3",
-      title: t("space3.title"),
-      description: t("space3.description"),
+      title: t.raw("space3.title"),
+      description: t.raw("space3.description"),
       images: Array.isArray(chef3Images)
         ? chef3Images
         : [chef3Images].filter(Boolean),
@@ -72,8 +72,8 @@ export default async function ChefPage() {
         slides={[
           {
             image: heroImage,
-            title: t("heroTitle"),
-            subtitle: t("heroSubtitle"),
+            title: t.raw("heroTitle"),
+            subtitle: t.raw("heroSubtitle"),
           },
         ]}
       />

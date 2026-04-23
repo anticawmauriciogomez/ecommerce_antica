@@ -93,7 +93,10 @@ export function HeroClient({ slides }: HeroClientProps) {
             key={index}
             className={`${styles.heroTextWrapper} ${index === currentIndex ? styles.active : ""}`}
           >
-            <h1 className={`${styles.heroTitle} text-serif`}>{slide.title}</h1>
+            <h1
+              className={`${styles.heroTitle} text-serif`}
+              dangerouslySetInnerHTML={{ __html: slide.title }}
+            />
             <div
               className={`${styles.heroSubtitle} text-sans`}
               dangerouslySetInnerHTML={{ __html: slide.subtitle }}
