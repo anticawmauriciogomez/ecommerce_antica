@@ -1,6 +1,7 @@
 import { getRequestConfig } from "next-intl/server";
 import { routing } from "./i18n/routing";
 import { supabase } from "@/lib/supabaseClient";
+import { processDbText } from "@/lib/cms";
 
 function deepMerge(target: any, source: any) {
   if (typeof target !== "object" || target === null) return source;
@@ -15,16 +16,20 @@ function deepMerge(target: any, source: any) {
     ) {
       if (!output[key]) output[key] = {};
       output[key] = deepMerge(output[key], source[key]);
-    } else {
-      // Only merge if the source is not empty! This prevents Admin clearing local strings accidentally
-      if (
-        source[key] !== "" &&
-        source[key] !== undefined &&
-        source[key] !== null
-      ) {
-        output[key] = source[key];
+      } else {
+        // Only merge if the source is not empty! This prevents Admin clearing local strings accidentally
+        if (
+          source[key] !== "" &&
+          source[key] !== undefined &&
+          source[key] !== null
+        ) {
+          // Process string values to clean HTML tags from DB
+          output[key] =
+            typeof source[key] === "string"
+              ? processDbText(source[key])
+              : source[key];
+        }
       }
-    }
   });
   return output;
 }
