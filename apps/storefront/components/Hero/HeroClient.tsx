@@ -94,9 +94,10 @@ export function HeroClient({ slides }: HeroClientProps) {
             className={`${styles.heroTextWrapper} ${index === currentIndex ? styles.active : ""}`}
           >
             <h1 className={`${styles.heroTitle} text-serif`}>{slide.title}</h1>
-            <p className={`${styles.heroSubtitle} text-sans`}>
-              {slide.subtitle}
-            </p>
+            <div
+              className={`${styles.heroSubtitle} text-sans`}
+              dangerouslySetInnerHTML={{ __html: slide.subtitle }}
+            />
             <a
               href={slide.buttonLink || "/es/nosotros"}
               className={`${styles.btnPrimary} ${styles.pointerAuto}`}
