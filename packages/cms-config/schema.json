@@ -695,7 +695,61 @@
           "file": "components/SpacesSection/SpacesSection.tsx"
         }
       ]
+    },
+    {
+      "group": "Página Chef",
+      "source": "auto",
+      "items": [
+        {
+          "key": "Chef.heroTitle",
+          "label": "Título Hero",
+          "source": "auto",
+          "file": "app/[locale]/chef/page.tsx"
+        },
+        {
+          "key": "Chef.heroSubtitle",
+          "label": "Subtítulo Hero",
+          "source": "auto",
+          "file": "app/[locale]/chef/page.tsx"
+        },
+        {
+          "key": "Chef.space1.title",
+          "label": "Título Espacio 1",
+          "source": "auto",
+          "file": "app/[locale]/chef/page.tsx"
+        },
+        {
+          "key": "Chef.space1.description",
+          "label": "Descripción Espacio 1",
+          "source": "auto",
+          "file": "app/[locale]/chef/page.tsx"
+        },
+        {
+          "key": "Chef.space2.title",
+          "label": "Título Espacio 2",
+          "source": "auto",
+          "file": "app/[locale]/chef/page.tsx"
+        },
+        {
+          "key": "Chef.space2.description",
+          "label": "Descripción Espacio 2",
+          "source": "auto",
+          "file": "app/[locale]/chef/page.tsx"
+        },
+        {
+          "key": "Chef.space3.title",
+          "label": "Título Espacio 3",
+          "source": "auto",
+          "file": "app/[locale]/chef/page.tsx"
+        },
+        {
+          "key": "Chef.space3.description",
+          "label": "Descripción Espacio 3",
+          "source": "auto",
+          "file": "app/[locale]/chef/page.tsx"
+        }
+      ]
     }
   ],
-  "_lastSync": "2026-04-23T14:30:02.799Z"
+  "_lastSync": "2026-04-23T17:19:00.726Z"
 }

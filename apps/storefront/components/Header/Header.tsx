@@ -123,7 +123,7 @@ const Header = ({ logoUrl }: HeaderProps) => {
                 aria-label={`${t("cart")} (${mounted ? totalItems : 0} items)`}
               >
                 <Image
-                  src={`/cart-${theme === "light" ? "black" : "white"}.svg`}
+                  src="/cart-white.svg"
                   alt="Cart"
                   width={20}
                   height={20}
@@ -201,7 +201,7 @@ const Header = ({ logoUrl }: HeaderProps) => {
               aria-label={`${t("cart")} (${mounted ? totalItems : 0} items)`}
             >
               <Image
-                src={`/cart-${theme === "light" ? "black" : "white"}.svg`}
+                src="/cart-white.svg"
                 alt="Cart"
                 width={20}
                 height={20}

@@ -186,6 +186,20 @@ export const baseDictionaryEs = {
     title: "Nuestro Chef",
     description: "Conoce al maestro detrás de nuestra cocina especializada, dedicada a crear experiencias culinarias únicas.",
     button: "Conoce Más",
+    heroTitle: "Nuestro Chef",
+    heroSubtitle: "Pasión por la cocina que transforma cada plato en una obra de arte",
+    space1: {
+      title: "Biografía del Chef",
+      description: "Descubre el viaje culinario de nuestro chef, desde sus inicios hasta convertirse en el corazón de Antica. Una historia de dedicación y amor por la gastronomía."
+    },
+    space2: {
+      title: "Especialidades",
+      description: "Platos signature creados con ingredientes frescos y técnicas innovadoras. Cada bocado cuenta una historia de sabor y creatividad."
+    },
+    space3: {
+      title: "Filosofía Culinaria",
+      description: "La visión que guía nuestra cocina: fusión de tradiciones, innovación constante y respeto por los sabores auténticos de cada ingrediente."
+    }
   },
 };
 
@@ -372,5 +386,19 @@ export const baseDictionaryEn = {
     title: "Our Chef",
     description: "Meet the master behind our specialized kitchen, dedicated to creating unique culinary experiences.",
     button: "Learn More",
+    heroTitle: "Our Chef",
+    heroSubtitle: "Passion for cooking that transforms every dish into a work of art",
+    space1: {
+      title: "Chef's Biography",
+      description: "Discover the culinary journey of our chef, from his beginnings to becoming the heart of Antica. A story of dedication and love for gastronomy."
+    },
+    space2: {
+      title: "Specialties",
+      description: "Signature dishes created with fresh ingredients and innovative techniques. Each bite tells a story of flavor and creativity."
+    },
+    space3: {
+      title: "Culinary Philosophy",
+      description: "The vision that guides our kitchen: fusion of traditions, constant innovation and respect for the authentic flavors of each ingredient."
+    }
   },
 };
