@@ -90,12 +90,10 @@ export default function ProductDetailPage({ params }: PageProps) {
           Math.min(1, visibleHeight / descriptionHeight),
         );
 
-        // Divide into parts based on number of images (disabled)
-        // if (!isMobile) {
-        //   const imagesCount = product.images.length;
-        //   const index = Math.floor(scrollProgress * imagesCount);
-        //   setCurrentImageIndex(Math.max(0, Math.min(imagesCount - 1, index)));
-        // }
+        // Divide into parts based on number of images
+        const imagesCount = product.images.length;
+        const index = Math.floor(scrollProgress * imagesCount);
+        setCurrentImageIndex(Math.max(0, Math.min(imagesCount - 1, index)));
       }
     };
 
@@ -156,19 +154,22 @@ export default function ProductDetailPage({ params }: PageProps) {
                   "Sin descripción disponible.",
               }}
             />
-
-            {product.buyable ? (
-              <div className={styles.actions}>
-                <AddToCartButton product={product} />
-                <BuyNowButton product={product} />
-              </div>
-            ) : (
-              <p className="text-sm text-gray-500">
-                Este producto no está disponible para compra.
-              </p>
-            )}
           </div>
         </div>
+
+        {/* Zona de Acción (Fuera del Grid para evitar solapamiento sticky) */}
+        {product.buyable ? (
+          <div className={styles.actionsWrapper}>
+            <div className={styles.actions}>
+              <AddToCartButton product={product} />
+              <BuyNowButton product={product} />
+            </div>
+          </div>
+        ) : (
+          <div className={styles.notAvailable}>
+            <p>Este producto no está disponible para compra.</p>
+          </div>
+        )}
       </div>
     </div>
   );

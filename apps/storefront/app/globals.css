@@ -17,6 +17,7 @@
   --accent-gold-hover: #e0be93;
 
   --border-color: rgba(18, 16, 14, 0.1);
+  --calendar-icon-filter: 0;
 
   /* Typography Scale (PT to PX) */
   --fs-h1: 64px; /* 48pt */
@@ -44,6 +45,7 @@
   --accent-gold-hover: #e0be93;
 
   --border-color: rgba(250, 233, 223, 0.1);
+  --calendar-icon-filter: 1;
 
   /* Typography Scale (PT to PX) - mismo para ambos temas */
   --fs-h1: 64px;
@@ -63,7 +65,11 @@
   margin: 0;
 }
 
-html,
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -74,7 +80,7 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
-  overflow-x: hidden;
+  overflow: visible;
   width: 100%;
   position: relative;
 }

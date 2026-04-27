@@ -103,7 +103,7 @@ export function TextsForm({ baseDictionaryEs, baseDictionaryEn, savedTranslation
 
   return (
     <div className="space-y-12">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 pb-6 border-b border-(--card-border)">
+      <div className="sticky -top-8 md:-top-12 z-20 bg-(--background)/95 backdrop-blur-md pt-8 md:pt-12 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-b border-(--card-border)">
         <div>
           <h1 className="text-4xl font-normal tracking-tight" style={{ color: 'var(--foreground)', fontFamily: 'var(--font-serif)' }}>
             Textos del Storefront

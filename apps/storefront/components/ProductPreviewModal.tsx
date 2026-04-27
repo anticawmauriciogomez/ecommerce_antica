@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProductImageGallery from "@/app/[locale]/experiencias/[id]/ProductImageGallery";
 import styles from "./ProductPreviewModal.module.css";
 
@@ -24,6 +24,8 @@ export default function ProductPreviewModal({
   locale,
   onClose,
 }: ProductPreviewModalProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -32,12 +34,23 @@ export default function ProductPreviewModal({
     return () => document.removeEventListener("keydown", handleEscape);
   }, [onClose]);
 
-  if (!product) return null;
-
   const images = [
-    ...(product.image_url ? [product.image_url] : []),
-    ...(product.image_gallery || []),
+    ...(product?.image_url ? [product.image_url] : []),
+    ...(product?.image_gallery || []),
   ];
+
+  // Auto-slide logic
+  useEffect(() => {
+    if (!product || images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [product, images.length]);
+
+  if (!product) return null;
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -50,8 +63,8 @@ export default function ProductPreviewModal({
             <ProductImageGallery
               images={images}
               alt={product.name[locale] || ""}
-              currentIndex={0}
-              onIndexChange={() => {}}
+              currentIndex={currentIndex}
+              onIndexChange={setCurrentIndex}
             />
           </div>
           <div className={styles.details}>

@@ -5,11 +5,11 @@ import { LayoutProvider } from '@/components/LayoutContext'
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <LayoutProvider>
-      <div className="min-h-screen bg-(--background) text-(--foreground)">
+      <div className="h-screen overflow-hidden flex bg-(--background) text-(--foreground)">
         <Sidebar />
-        <div className="flex flex-col md:pl-64 min-h-screen">
+        <div className="flex-1 flex flex-col min-w-0 md:pl-64">
           <Header />
-          <main className="flex-1 px-4 py-8 md:px-12 md:py-12">
+          <main className="flex-1 overflow-y-auto px-4 py-8 md:px-12 md:py-12 custom-scrollbar">
             <div className="mx-auto max-w-7xl animate-in fade-in slide-in-from-bottom-4 duration-700">
               {children}
             </div>

@@ -40,11 +40,16 @@ export default function ProductsList({
     showCategoryFilter ? "ProductosPage" : "ExperienciasPage",
   );
 
+  const normalize = (str: string) => 
+    str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
   const filteredProducts = useMemo(() => {
+    const normalizedSearch = normalize(searchTerm);
+    
     return products.filter((product) => {
-      const matchesSearch = product.name[locale]
-        ?.toLowerCase()
-        .includes(searchTerm.toLowerCase());
+      const productName = product.name[locale] || "";
+      const matchesSearch = normalize(productName).includes(normalizedSearch);
+      
       const matchesCategory =
         !showCategoryFilter ||
         selectedCategory === null ||

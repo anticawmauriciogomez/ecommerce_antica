@@ -243,7 +243,7 @@ export function ProductForm({
         </div>
       </div>
 
-      <div className="flex justify-end gap-6 border-t border-(--card-border) pt-8">
+      <div className="sticky bottom-0 z-20 bg-(--background)/95 backdrop-blur-md pt-6 pb-8 md:pb-12 mt-8 -mx-4 px-4 md:-mx-12 md:px-12 flex justify-end gap-6 border-t border-(--card-border)">
         <button
           type="button"
           onClick={() => window.history.back()}

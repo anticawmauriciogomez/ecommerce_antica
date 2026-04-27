@@ -4,117 +4,343 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import styles from './ReservationForm.module.css';
 
-// CAMBIO 1: El tipo FormState ya no incluye 'null'. La acción SIEMPRE devuelve un objeto.
 type FormState = {
     success: boolean;
     message: string;
 };
 
-// El estado del componente SÍ puede ser 'null' al inicio.
 type ComponentState = FormState | null;
-
-// CAMBIO 2: La firma de la función ahora promete devolver SIEMPRE un FormState.
-async function submitReservation(prevState: ComponentState, formData: FormData): Promise<FormState> {
-    const { supabase } = await import('@/lib/supabaseClient');
-
-    const rawFormData = {
-        name: formData.get('name') as string,
-        phone: formData.get('phone') as string,
-        date: formData.get('date') as string,
-        time: formData.get('time') as string,
-        guests: formData.get('guests') as string,
-    };
-
-    if (!rawFormData.name || !rawFormData.date || !rawFormData.time || !rawFormData.guests) {
-        // Usamos el mensaje del diccionario para consistencia.
-        return { success: false, message: 'Por favor completa todos los campos requeridos.' };
-    }
-
-    const { error } = await supabase.from('reservations').insert({
-        name: rawFormData.name,
-        phone: rawFormData.phone,
-        reservation_date: rawFormData.date,
-        reservation_time: rawFormData.time,
-        number_of_guests: parseInt(rawFormData.guests, 10),
-    });
-
-    if (error) {
-        console.error('Supabase error:', error);
-        return { success: false, message: 'Hubo un error al guardar tu reserva.' };
-    }
-
-    return { success: true, message: '¡Reserva enviada con éxito!' };
-}
 
 const ReservationForm = ({ reservationBg }: { reservationBg?: string }) => {
     const t = useTranslations('ReservationForm');
-    // El estado del componente usa el nuevo tipo 'ComponentState'
+    const ts = useTranslations('Spaces');
+    
+    const [step, setStep] = useState(0); // 0: Invitation, 1-5: Steps, 6: Success
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formState, setFormState] = useState<ComponentState>(null);
+    
+    const [formData, setFormData] = useState({
+        guests: '2',
+        date: '',
+        time: '',
+        preOrder: '',
+        space: '',
+        name: '',
+        phone: '',
+    });
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-    const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const roundTime = (timeString: string) => {
+        if (!timeString) return '';
+        const parts = timeString.split(':').map(Number);
+        const hours = parts[0] ?? 0;
+        const minutes = parts[1] ?? 0;
+        const totalMinutes = hours * 60 + minutes;
+        // Round to nearest 15 minutes: 0, 15, 30, 45
+        const roundedMinutes = Math.round(totalMinutes / 15) * 15;
+        const finalHours = Math.floor(roundedMinutes / 60) % 24;
+        const finalMinutes = roundedMinutes % 60;
+        return `${String(finalHours).padStart(2, '0')}:${String(finalMinutes).padStart(2, '0')}`;
+    };
 
-        // CAMBIO 3: Guardamos la referencia al formulario ANTES del await.
-        const form = event.currentTarget;
-        const formData = new FormData(form);
+    const validateDateTime = (dateStr: string, timeStr: string) => {
+        if (!dateStr || !timeStr) return true;
 
-        const result = await submitReservation(formState, formData);
-        setFormState(result);
+        // Check Monday
+        const date = new Date(dateStr + 'T00:00:00');
+        if (date.getDay() === 1) { // Monday
+            setErrorMsg(t('closedMonday'));
+            return false;
+        }
 
-        if (result.success) {
-            // Usamos la referencia guardada para hacer el reset. ¡Esto ya no será null!
-            form.reset();
+        // Check Hours (9:30 AM to 9:00 PM)
+        const parts = timeStr.split(':').map(Number);
+        const hours = parts[0] ?? 0;
+        const minutes = parts[1] ?? 0;
+        const timeVal = hours + minutes / 60;
+        if (timeVal < 9.5 || timeVal > 21) {
+            setErrorMsg(t('outsideHours'));
+            return false;
+        }
+
+        setErrorMsg(null);
+        return true;
+    };
+
+    const updateFormData = (field: string, value: string) => {
+        let newValue = value;
+        if (field === 'time') {
+            newValue = roundTime(value);
+        }
+        
+        setFormData(prev => {
+            const updated = { ...prev, [field]: newValue };
+            if (field === 'date' || field === 'time') {
+                validateDateTime(updated.date, updated.time);
+            }
+            return updated;
+        });
+    };
+
+    const nextStep = () => {
+        if (step === 2) {
+            if (!validateDateTime(formData.date, formData.time)) return;
+            if (!formData.date || !formData.time) return;
+        }
+        setStep(prev => prev + 1);
+    };
+
+    const prevStep = () => {
+        setErrorMsg(null);
+        setStep(prev => prev - 1);
+    };
+
+    const handleFormSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!validateDateTime(formData.date, formData.time)) return;
+        
+        setIsSubmitting(true);
+        
+        try {
+            const { supabase } = await import('@/lib/supabaseClient');
+            
+            const { error } = await supabase.from('reservations').insert({
+                name: formData.name,
+                phone: formData.phone,
+                reservation_date: formData.date,
+                reservation_time: formData.time,
+                number_of_guests: parseInt(formData.guests, 10),
+                pre_order: formData.preOrder,
+                space_preference: formData.space
+            });
+
+            if (error) throw error;
+
+            setFormState({ success: true, message: t('successMessage') });
+        } catch (error: any) {
+            console.error('Error submitting reservation:', error);
+            // Si el error tiene detalles de Supabase, los mostramos para debug
+            if (error?.message) console.error('Supabase Error Message:', error.message);
+            if (error?.details) console.error('Supabase Error Details:', error.details);
+            if (error?.hint) console.error('Supabase Error Hint:', error.hint);
+            
+            setFormState({ success: false, message: t('errorMessage') });
+        } finally {
+            setIsSubmitting(false);
+            setStep(6);
         }
     };
+
+    // Calculate progress percentage
+    const progress = ((step - 1) / 4) * 100;
+
+    if (step === 0) {
+        return (
+            <section 
+                id="reservation" 
+                className={styles.section}
+                style={reservationBg ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('${reservationBg}')`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
+            >
+                <div className={styles.container}>
+                    <div className={styles.invitation}>
+                        <h2 className={styles.invitationTitle}>{t('invitationTitle')}</h2>
+                        <p className={styles.invitationSubtitle}>{t('invitationSubtitle')}</p>
+                        <button 
+                            onClick={nextStep} 
+                            className={`${styles.reserveNowBtn} btn btn-primary`}
+                        >
+                            {t('reserveNow')}
+                        </button>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section 
             id="reservation" 
             className={styles.section}
-            style={reservationBg ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${reservationBg}')`, backgroundSize: 'cover', backgroundPosition: 'center', color: 'white' } : {}}
+            style={reservationBg ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('${reservationBg}')`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
         >
             <div className={styles.container}>
-                <h2 className={styles.title}>{t('title')}</h2>
-                <p className={styles.subtitle}>{t('subtitle')}</p>
-
-                <form onSubmit={handleFormSubmit} className={styles.form}>
-                    {/* ... el resto del formulario se mantiene igual ... */}
-                    <div className={styles.formGroup}>
-                        <label htmlFor="name" className={styles.label}>{t('nameLabel')}</label>
-                        <input type="text" id="name" name="name" className={styles.input} placeholder={t('namePlaceholder')} required />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                        <label htmlFor="phone" className={styles.label}>{t('phoneLabel')}</label>
-                        <input type="tel" id="phone" name="phone" className={styles.input} placeholder={t('phonePlaceholder')} />
-                    </div>
-
-                    <div className={styles.dateTimeContainer}>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="date" className={styles.label}>{t('dateLabel')}</label>
-                            <input type="date" id="date" name="date" className={styles.input} required />
+                <div className={styles.formCard}>
+                    {step < 6 && (
+                        <div className={styles.progressBar}>
+                            <div className={styles.progress} style={{ width: `${progress}%` }}></div>
                         </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="time" className={styles.label}>{t('timeLabel')}</label>
-                            <input type="time" id="time" name="time" className={styles.input} required />
-                        </div>
-                    </div>
+                    )}
 
-                    <div className={styles.formGroup}>
-                        <label htmlFor="guests" className={styles.label}>{t('guestsLabel')}</label>
-                        <input type="number" id="guests" name="guests" min="1" className={styles.input} placeholder={t('guestsPlaceholder')} required />
-                    </div>
+                    <form onSubmit={handleFormSubmit}>
+                        {step === 1 && (
+                            <div className={styles.stepContent}>
+                                <div className={styles.stepHeader}>
+                                    <h3 className={styles.stepTitle}>{t('stepGuests')}</h3>
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.label}>{t('guestsLabel')}</label>
+                                    <input 
+                                        type="number" 
+                                        min="1" 
+                                        value={formData.guests}
+                                        onChange={(e) => updateFormData('guests', e.target.value)}
+                                        className={styles.input}
+                                        required
+                                    />
+                                </div>
+                                <div className={styles.buttonGroup}>
+                                    <button type="button" onClick={prevStep} className={styles.backBtn}>{t('back')}</button>
+                                    <button type="button" onClick={nextStep} className={`${styles.nextBtn} btn btn-primary`}>{t('next')}</button>
+                                </div>
+                            </div>
+                        )}
 
-                    <button type="submit" className={`${styles.submitButton} btn btn-primary`}>
-                        {t('submitButton')}
-                    </button>
-                </form>
+                        {step === 2 && (
+                            <div className={styles.stepContent}>
+                                <div className={styles.stepHeader}>
+                                    <h3 className={styles.stepTitle}>{t('stepDateTime')}</h3>
+                                </div>
+                                <div className={styles.dateTimeContainer}>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.label}>{t('dateLabel')}</label>
+                                        <input 
+                                            type="date" 
+                                            value={formData.date}
+                                            onChange={(e) => updateFormData('date', e.target.value)}
+                                            className={styles.input}
+                                            required
+                                        />
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.label}>{t('timeLabel')}</label>
+                                        <input 
+                                            type="time" 
+                                            value={formData.time}
+                                            onChange={(e) => updateFormData('time', e.target.value)}
+                                            className={styles.input}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                {errorMsg && <p className={styles.errorText}>{errorMsg}</p>}
+                                <div className={styles.buttonGroup}>
+                                    <button type="button" onClick={prevStep} className={styles.backBtn}>{t('back')}</button>
+                                    <button type="button" onClick={nextStep} className={`${styles.nextBtn} btn btn-primary`}>{t('next')}</button>
+                                </div>
+                            </div>
+                        )}
 
-                {formState && (
-                    <div className={`${styles.message} ${formState.success ? styles.success : styles.error}`}>
-                        {formState.success ? t('successMessage') : t('errorMessage')}
-                    </div>
-                )}
+                        {step === 3 && (
+                            <div className={styles.stepContent}>
+                                <div className={styles.stepHeader}>
+                                    <h3 className={styles.stepTitle}>{t('stepPreOrder')}</h3>
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.label}>{t('preOrderLabel')}</label>
+                                    <textarea 
+                                        value={formData.preOrder}
+                                        onChange={(e) => updateFormData('preOrder', e.target.value)}
+                                        className={styles.textarea}
+                                        placeholder={t('preOrderPlaceholder')}
+                                        rows={4}
+                                    />
+                                </div>
+                                <div className={styles.buttonGroup}>
+                                    <button type="button" onClick={prevStep} className={styles.backBtn}>{t('back')}</button>
+                                    <button type="button" onClick={nextStep} className={`${styles.nextBtn} btn btn-primary`}>{t('next')}</button>
+                                </div>
+                            </div>
+                        )}
+
+                        {step === 4 && (
+                            <div className={styles.stepContent}>
+                                <div className={styles.stepHeader}>
+                                    <h3 className={styles.stepTitle}>{t('stepSpace')}</h3>
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.label}>{t('spaceLabel')}</label>
+                                    <select 
+                                        value={formData.space}
+                                        onChange={(e) => updateFormData('space', e.target.value)}
+                                        className={styles.select}
+                                    >
+                                        <option value="">{t('noPreference')}</option>
+                                        <option value="main_hall">{ts('space1.title')}</option>
+                                        <option value="terrace">{ts('space2.title')}</option>
+                                        <option value="events">{ts('space3.title')}</option>
+                                        <option value="beverage_atelier">{ts('space4.title')}</option>
+                                        <option value="romantic">{ts('space5.title')}</option>
+                                    </select>
+                                </div>
+                                <div className={styles.buttonGroup}>
+                                    <button type="button" onClick={prevStep} className={styles.backBtn}>{t('back')}</button>
+                                    <button type="button" onClick={nextStep} className={`${styles.nextBtn} btn btn-primary`}>{t('next')}</button>
+                                </div>
+                            </div>
+                        )}
+
+                        {step === 5 && (
+                            <div className={styles.stepContent}>
+                                <div className={styles.stepHeader}>
+                                    <h3 className={styles.stepTitle}>{t('stepDetails')}</h3>
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.label}>{t('nameLabel')}</label>
+                                    <input 
+                                        type="text" 
+                                        value={formData.name}
+                                        onChange={(e) => updateFormData('name', e.target.value)}
+                                        className={styles.input}
+                                        placeholder={t('namePlaceholder')}
+                                        required
+                                    />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.label}>{t('phoneLabel')}</label>
+                                    <input 
+                                        type="tel" 
+                                        value={formData.phone}
+                                        onChange={(e) => updateFormData('phone', e.target.value)}
+                                        className={styles.input}
+                                        placeholder={t('phonePlaceholder')}
+                                        required
+                                    />
+                                </div>
+                                <div className={styles.buttonGroup}>
+                                    <button type="button" onClick={prevStep} className={styles.backBtn}>{t('back')}</button>
+                                    <button 
+                                        type="submit" 
+                                        disabled={isSubmitting}
+                                        className={`${styles.nextBtn} btn btn-primary`}
+                                    >
+                                        {isSubmitting ? '...' : t('submitButton')}
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        {step === 6 && (
+                            <div className={styles.stepContent}>
+                                <div className={styles.successStep}>
+                                    <div className={`${styles.successIcon} ${!formState?.success ? styles.errorIcon : ''}`}>
+                                        {formState?.success ? '✓' : '✕'}
+                                    </div>
+                                    <h3 className={styles.stepTitle} style={{ color: formState?.success ? 'inherit' : '#ef4444' }}>
+                                        {formState?.success ? t('successMessage') : t('errorMessage')}
+                                    </h3>
+                                    <button 
+                                        type="button" 
+                                        onClick={() => setStep(0)} 
+                                        className={`${styles.reserveNowBtn} btn btn-primary`}
+                                        style={{ marginTop: '2rem' }}
+                                    >
+                                        {t('back')}
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </form>
+                </div>
             </div>
         </section>
     );
