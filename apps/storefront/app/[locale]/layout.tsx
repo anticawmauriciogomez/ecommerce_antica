@@ -3,6 +3,7 @@ import { getMessages } from "next-intl/server";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AnnouncementBanner from "@/components/AnnouncementBanner/AnnouncementBanner";
+import { PetFriendlyBadge } from "@/components/PetFriendlyBadge/PetFriendlyBadge";
 import { cormorantGaramond, montserrat, abrilFatface } from "../fonts";
 import "../globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -84,6 +85,7 @@ export default async function LocaleLayout(props: {
             <Header logoUrl={logoUrl} />
             {children}
             <AnnouncementBanner />
+            <PetFriendlyBadge />
             <Footer locale={locale} />
             <Toaster position="bottom-right" expand={false} richColors />
           </NextIntlClientProvider>

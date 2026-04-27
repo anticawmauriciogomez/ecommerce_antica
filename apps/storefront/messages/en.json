@@ -253,5 +253,9 @@
   "Reviews": {
     "title": "Customer Reviews",
     "outOf": "out of"
+  },
+  "PetFriendly": {
+    "title": "Pet Friendly",
+    "tooltip": "Your furry friends are welcome! We have comfortable spaces and fresh water for them."
   }
 }

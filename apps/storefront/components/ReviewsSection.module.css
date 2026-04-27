@@ -52,11 +52,48 @@
 .reviewItem {
   flex-shrink: 0;
   width: 300px;
+  height: 220px; /* Tamaño fijo para que no cambien por cada texto */
+  display: flex;
+  flex-direction: column;
   margin-right: 2rem;
   padding: 1.5rem;
   background: var(--bg-secondary);
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.reviewAuthor {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.reviewStars {
+  margin-bottom: 1rem;
+}
+
+.reviewComment {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  overflow-y: auto; /* Permite scroll interno si el texto es muy largo */
+  flex-grow: 1;
+  padding-right: 5px;
+  font-style: italic;
+}
+
+/* Estilo del scrollbar interno para la tarjeta */
+.reviewComment::-webkit-scrollbar {
+  width: 3px;
+}
+.reviewComment::-webkit-scrollbar-track {
+  background: transparent;
+}
+.reviewComment::-webkit-scrollbar-thumb {
+  background-color: var(--accent-gold);
+  border-radius: 10px;
 }
 
 @keyframes scrollLeft {
@@ -78,11 +115,14 @@
   }
 
   .reviewItem {
-    width: 250px;
-    margin-right: 1rem;
+    width: 280px; /* Un poco más ancho en móvil para mejor lectura */
+    height: 220px;
+    margin-right: 1.5rem;
+    padding: 1.25rem;
   }
 
-  .reviewCard {
-    padding: 1.5rem;
+  .reviewComment {
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 }

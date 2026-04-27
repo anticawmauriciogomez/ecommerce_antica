@@ -253,5 +253,9 @@
   "Reviews": {
     "title": "Opiniones de Nuestros Clientes",
     "outOf": "de"
+  },
+  "PetFriendly": {
+    "title": "Pet Friendly",
+    "tooltip": "¡Tus peluditos son bienvenidos! Contamos con espacios cómodos y agua fresca para ellos."
   }
 }

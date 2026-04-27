@@ -72,6 +72,8 @@
 
 .messageActions {
   margin-top: auto;
+  padding-top: 1.5rem; /* Garantiza espacio mínimo entre el texto y el botón */
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
 }
@@ -167,34 +169,64 @@
     padding: 0 0.5rem;
   }
 
+  .carousel {
+    height: 480px; /* Altura fija para que los controles no salten */
+    position: relative;
+    justify-content: flex-start;
+  }
+
   .carouselRow {
     flex-direction: row;
-    gap: 0.5rem;
-    align-items: center;
+    align-items: center; /* Centra la tarjeta y las flechas en el espacio fijo */
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding-bottom: 3rem; /* Espacio para los indicadores abajo */
   }
 
   .arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 1.2rem;
-    flex-shrink: 0;
+    position: absolute;
+    top: calc(50% - 1.5rem); /* Centrado verticalmente descontando el padding-bottom */
+    transform: translateY(-50%);
+    width: 30px; /* Flechas más pequeñas */
+    height: 30px;
+    font-size: 1rem;
+    z-index: 10;
+  }
+
+  .arrow:hover,
+  .arrow:active {
+    transform: translateY(-50%) scale(1.1); /* Mantener translateY al escalar */
   }
 
   .arrowLeft {
-    margin-right: 0.5rem;
+    left: 0;
+    margin: 0;
   }
 
   .arrowRight {
-    margin-left: 0.5rem;
+    right: 0;
+    margin: 0;
   }
 
   .messageCard {
     padding: 1.5rem;
-    height: 280px;
+    height: auto; /* Se ajusta a su contenido */
+    min-height: 280px; /* Altura mínima para que no sea muy pequeña */
+    margin: 0 34px; /* Espacio justo para las flechas absolutas */
+    width: calc(100% - 68px); /* Tarjeta más ancha */
+  }
+
+  .indicators {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
   }
 
   .messageTitle {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .messageText {

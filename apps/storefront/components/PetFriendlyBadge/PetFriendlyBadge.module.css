@@ -1,0 +1,142 @@
+.container {
+  position: fixed;
+  bottom: 60px; /* Por encima del banner de anuncio */
+  left: 20px;
+  z-index: 999;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--accent-gold);
+  border-radius: 50px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+}
+
+.badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(203, 168, 124, 0.2);
+  background-color: var(--accent-gold);
+}
+
+.badge:hover .iconContainer,
+.badge:hover .text {
+  color: var(--bg-dark);
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold);
+  transition: color 0.3s ease;
+}
+
+.text {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 15px);
+  left: 0;
+  width: 250px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  pointer-events: none;
+}
+
+.tooltipOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.tooltip p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+}
+
+.arrow {
+  position: absolute;
+  bottom: -6px;
+  left: 30px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  transform: rotate(45deg);
+}
+
+/* Modo oscuro */
+[data-theme="dark"] .badge {
+  background-color: var(--bg-dark);
+  border-color: rgba(203, 168, 124, 0.5);
+}
+
+[data-theme="dark"] .text {
+  color: var(--text-light);
+}
+
+/* Forzar que el hover funcione en modo oscuro */
+[data-theme="dark"] .badge:hover {
+  background-color: var(--accent-gold);
+}
+
+[data-theme="dark"] .badge:hover .text,
+[data-theme="dark"] .badge:hover .iconContainer {
+  color: var(--bg-dark);
+}
+
+[data-theme="dark"] .tooltip,
+[data-theme="dark"] .arrow {
+  background-color: var(--bg-dark);
+  border-color: rgba(203, 168, 124, 0.3);
+}
+
+[data-theme="dark"] .tooltip p {
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .container {
+    bottom: 50px;
+    left: 10px;
+  }
+
+  .badge {
+    padding: 6px 12px;
+  }
+  
+  .text {
+    font-size: 0.65rem;
+  }
+  
+  .iconContainer svg {
+    width: 18px;
+    height: 18px;
+  }
+}
