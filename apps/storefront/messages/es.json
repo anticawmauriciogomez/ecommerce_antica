@@ -29,7 +29,9 @@
     "chef": "CHEF",
     "gift": "REGALA",
     "reserve": "RESERVA",
-    "cart": "CARRITO"
+    "cart": "CARRITO",
+    "darkMode": "Modo Oscuro",
+    "lightMode": "Modo Claro"
   },
   "About": {
     "mainTitle": "El orgullo del sur de Colombia",

@@ -29,7 +29,9 @@
     "chef": "CHEF",
     "gift": "GIFT",
     "reserve": "RESERVE",
-    "cart": "CART"
+    "cart": "CART",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode"
   },
   "About": {
     "mainTitle": "The pride of southern Colombia",

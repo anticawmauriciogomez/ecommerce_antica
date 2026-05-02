@@ -222,6 +222,9 @@ const Header = ({ logoUrl }: HeaderProps) => {
             </button>
 
             <div className={styles.mobileNavTheme}>
+              <span className={styles.themeLabel}>
+                {mounted && (theme === "light" ? t("darkMode") : t("lightMode"))}
+              </span>
               <ThemeToggle />
             </div>
           </div>

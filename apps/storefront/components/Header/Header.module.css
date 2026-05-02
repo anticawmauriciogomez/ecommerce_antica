@@ -332,10 +332,9 @@
     display: block;
   }
 
-  /* Hide cart, language, and theme controls in mobile - they're in hamburger menu */
+  /* Hide cart and language controls in mobile - they're in hamburger menu */
   .cartBtn,
-  .langSelector,
-  .themeToggle {
+  .langSelector {
     display: none;
   }
 }
@@ -391,7 +390,7 @@
   height: calc(100vh - var(--nav-height, 80px));
   background-color: var(--bg-dark);
   backdrop-filter: blur(20px);
-  z-index: 999;
+  z-index: 1100;
   transform: translateX(-100%);
   transition:
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -474,10 +473,20 @@
 
 .mobileNavTheme {
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 1rem;
   margin-top: 1rem;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(240, 233, 223, 0.2);
+}
+
+.themeLabel {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* Responsive Breakpoints */
