@@ -86,8 +86,14 @@ export default function CafeMenu() {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      // Reset to empty string to remove the inline style entirely,
+      // so it doesn't persist across client-side navigation and break position: sticky
+      document.body.style.overflow = "";
     }
+    return () => {
+      // Cleanup on unmount to ensure the style is never left behind
+      document.body.style.overflow = "";
+    };
   }, [isModalOpen]);
 
   // Render each category as a modern card
