@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import styles from './ReservationForm.module.css';
 
@@ -29,6 +29,33 @@ const ReservationForm = ({ reservationBg }: { reservationBg?: string }) => {
         phone: '',
     });
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+    useEffect(() => {
+        const handleStartReservation = () => {
+            setStep(1);
+        };
+
+        if (typeof window !== "undefined") {
+            // Check initial hash on mount
+            if (window.location.hash === '#reservation') {
+                setStep(1);
+            }
+
+            window.addEventListener('start-reservation', handleStartReservation);
+            
+            const handleHashChange = () => {
+                if (window.location.hash === '#reservation') {
+                    setStep(1);
+                }
+            };
+            window.addEventListener('hashchange', handleHashChange);
+
+            return () => {
+                window.removeEventListener('start-reservation', handleStartReservation);
+                window.removeEventListener('hashchange', handleHashChange);
+            };
+        }
+    }, []);
 
     const roundTime = (timeString: string) => {
         if (!timeString) return '';

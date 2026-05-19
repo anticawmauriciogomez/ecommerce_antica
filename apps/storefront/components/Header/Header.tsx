@@ -67,6 +67,13 @@ const Header = ({ logoUrl }: HeaderProps) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleReserveClick = () => {
+    if (typeof window !== "undefined") {
+      const event = new CustomEvent("start-reservation");
+      window.dispatchEvent(event);
+    }
+  };
+
   return (
     <>
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
@@ -107,6 +114,7 @@ const Header = ({ logoUrl }: HeaderProps) => {
               <Link
                 href={`/${locale}#reservation`}
                 className={`${styles.navBtn} ${styles.btnPrimary}`}
+                onClick={handleReserveClick}
               >
                 {t("reserve")}
               </Link>
@@ -142,6 +150,12 @@ const Header = ({ logoUrl }: HeaderProps) => {
           </div>
         </div>
       </header>
+
+      {/* Backdrop Overlay */}
+      <div
+        className={`${styles.backdrop} ${isMenuOpen ? styles.backdropActive : ""}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
 
       {/* Mobile Menu Overlay */}
       <div
@@ -179,7 +193,10 @@ const Header = ({ logoUrl }: HeaderProps) => {
           <div className={styles.mobileOnly}>
             <Link
               href={`/${locale}#reservation`}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                handleReserveClick();
+              }}
             >
               {t("reserve")}
             </Link>
