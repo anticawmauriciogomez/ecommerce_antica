@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { saveAdminConfig } from '../actions'
 import { Save, FlaskConical, Settings2, Globe } from 'lucide-react'
+import { toast } from "@repo/ui/toast"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function SettingsForm({ configs }: { configs: any[] }) {
@@ -23,9 +24,9 @@ export function SettingsForm({ configs }: { configs: any[] }) {
         value: JSON.parse(val)
       }))
       await saveAdminConfig(parsedConfigs)
-      alert("¡Ajustes guardados correctamente!")
+      toast.success("¡Ajustes guardados correctamente!")
     } catch (e) {
-      alert("Error al procesar JSON o guardar: " + String(e))
+      toast.error("Error al procesar JSON o guardar: " + String(e))
     } finally {
       setIsSaving(false)
     }

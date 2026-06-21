@@ -3,6 +3,7 @@
 import React, { useState, useTransition } from 'react'
 import { addRoleByUserId } from '../actions'
 import { UserPlus, X, HelpCircle } from 'lucide-react'
+import { toast } from "@repo/ui/toast"
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Label } from '@/components/ui/Label'
@@ -23,7 +24,7 @@ export function AddUserModal() {
         setIsOpen(false)
         setUserId('')
       } catch (error) {
-        alert('Error al agregar rol. Asegúrate de que el ID del usuario sea válido y no tenga un rol ya asignado.')
+        toast.error('Error al agregar rol. Asegúrate de que el ID del usuario sea válido y no tenga un rol ya asignado.')
       }
     })
   }

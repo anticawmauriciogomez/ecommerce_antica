@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { updateOrderStatus } from '../actions'
 import { Loader2 } from 'lucide-react'
+import { toast } from "@repo/ui/toast"
 
 export function OrderStatusSelect({ orderId, currentStatus }: { orderId: string, currentStatus: string }) {
   const [isUpdating, setIsUpdating] = useState(false)
@@ -12,7 +13,7 @@ export function OrderStatusSelect({ orderId, currentStatus }: { orderId: string,
     try {
       await updateOrderStatus(orderId, e.target.value)
     } catch (err) {
-      alert("Failed to update status")
+      toast.error("Error al actualizar el estado")
     } finally {
       setIsUpdating(false)
     }

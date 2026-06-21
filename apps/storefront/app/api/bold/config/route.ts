@@ -4,7 +4,7 @@ import { generateButtonConfig } from "@/lib/bold";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { locale, orderId, totalAmount, email, name, phone } = body;
+    const { locale, orderId, totalAmount, email, name, phone, documentType, documentId, address } = body;
 
     if (!orderId || !totalAmount || !email) {
       return NextResponse.json(
@@ -19,7 +19,10 @@ export async function POST(request: NextRequest) {
       Number(totalAmount),
       email,
       name || "",
-      phone || ""
+      phone || "",
+      documentType || undefined,
+      documentId || undefined,
+      address || undefined
     );
 
     return NextResponse.json({ config });

@@ -2,6 +2,7 @@
 
 import { Trash2 } from 'lucide-react'
 import { useTransition } from 'react'
+import { toast } from "@repo/ui/toast"
 
 export function DeleteButton({ 
   id, 
@@ -22,7 +23,7 @@ export function DeleteButton({
             try {
               await deleteAction(id)
             } catch (error) {
-              alert(`Error al eliminar: ${error}`)
+              toast.error(`Error al eliminar: ${error}`)
             }
           })
         }

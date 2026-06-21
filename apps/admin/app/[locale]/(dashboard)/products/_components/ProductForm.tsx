@@ -13,9 +13,11 @@ import { toast } from "@repo/ui/toast";
 export function ProductForm({
   product,
   categories,
+  currency,
 }: {
   product?: any;
   categories: any[];
+  currency: { code: string; symbol: string };
 }) {
   const [isPending, setIsPending] = useState(false);
   const [available, setAvailable] = useState(product?.available ?? true);
@@ -133,7 +135,7 @@ export function ProductForm({
                   htmlFor="price"
                   className="text-[10px] font-bold uppercase tracking-widest text-accent-gold/60 px-1"
                 >
-                  Precio (S/.)
+                  Precio ({currency.symbol} {currency.code})
                 </Label>
                 <Input
                   id="price"

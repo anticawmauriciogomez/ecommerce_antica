@@ -7,6 +7,11 @@ export type CartItem = {
     price: number;
     image_url: string | null;
     quantity: number;
+    is_gift?: boolean;
+    recipient_name?: string;
+    recipient_email?: string;
+    recipient_message?: string;
+    voucher_value?: number;
 };
 
 interface CartState {
