@@ -81,7 +81,12 @@ export default function CheckoutUI({ heroImage }: CheckoutUIProps) {
         name: item.name,
         price: item.price,
         quantity: item.quantity,
-        image_url: item.image_url
+        image_url: item.image_url,
+        is_gift: item.is_gift,
+        recipient_name: item.recipient_name,
+        recipient_email: item.recipient_email,
+        recipient_message: item.recipient_message,
+        voucher_value: item.voucher_value
       }));
 
       const { data: order, error: insertError } = await supabase
@@ -119,6 +124,9 @@ export default function CheckoutUI({ heroImage }: CheckoutUIProps) {
           email: billingData.email,
           name: billingData.name,
           phone: billingData.phone,
+          documentType: billingData.docType,
+          documentId: billingData.docId,
+          address: billingData.address,
         }),
       });
 
@@ -341,7 +349,12 @@ export default function CheckoutUI({ heroImage }: CheckoutUIProps) {
                     className={styles.itemImage}
                   />
                   <div className={styles.itemInfo}>
-                    <span className={styles.itemName}>{item.name[locale]}</span>
+                    <span className={styles.itemName}>
+                      {item.name[locale]}
+                      {item.is_gift && (
+                        <span className="ml-2 inline-block text-[9px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">Regalo</span>
+                      )}
+                    </span>
                     <div className="flex items-center gap-2">
                        <span className={styles.itemPrice}>$ {item.price} {currency}</span>
                        <span className={styles.itemQty}>x {item.quantity}</span>

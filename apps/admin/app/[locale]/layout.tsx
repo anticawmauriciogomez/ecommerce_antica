@@ -35,7 +35,7 @@ export default async function RootLayout({
     notFound();
   }
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
         <Toaster position="top-right" expand={false} richColors />

@@ -33,7 +33,7 @@ interface Order {
   payment_method?: string
 }
 
-export function OrderList({ orders, locale }: { orders: Order[], locale: string }) {
+export function OrderList({ orders, locale, currency }: { orders: Order[], locale: string, currency: { code: string, symbol: string } }) {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
   const [isSheetOpen, setIsSheetOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
@@ -103,7 +103,7 @@ export function OrderList({ orders, locale }: { orders: Order[], locale: string 
                     </span>
                   </td>
                   <td className="px-8 py-6 font-bold text-(--foreground) italic">
-                    S/ {order.total_amount}
+                    {currency.symbol} {order.total_amount} {currency.code}
                   </td>
                   <td className="px-8 py-6">
                     <OrderStatusSelect orderId={order.id} currentStatus={order.status} />
@@ -214,52 +214,48 @@ export function OrderList({ orders, locale }: { orders: Order[], locale: string 
               </section>
 
               {/* Seccion Pago Bold */}
-              {(selectedOrder.bold_status || selectedOrder.payment_method || selectedOrder.bold_payment_link_id) && (
-                <section className="space-y-6">
-                  <h3 className="text-xs font-black uppercase tracking-[3px] text-accent-gold/40 flex items-center gap-3">
-                    <div className="h-px w-4 bg-accent-gold/20" />
-                    Información del Pago (Bold)
-                  </h3>
+              <section className="space-y-6">
+                <h3 className="text-xs font-black uppercase tracking-[3px] text-accent-gold/40 flex items-center gap-3">
+                  <div className="h-px w-4 bg-accent-gold/20" />
+                  Información del Pago (Bold)
+                </h3>
+                {selectedOrder.bold_status || selectedOrder.payment_method ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {selectedOrder.bold_status && (
-                      <div className="flex items-center gap-4 p-4 rounded-2xl bg-(--background) border border-(--card-border)">
-                        <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white"
-                          style={{ backgroundColor: selectedOrder.bold_status === 'paid' ? '#16a34a' : selectedOrder.bold_status === 'rejected' ? '#ef4444' : 'var(--accent-gold)' }}>
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        </div>
-                        <div>
-                          <p className="text-[10px] font-bold text-accent-gold/50 uppercase tracking-widest">Estado Bold</p>
-                          <p className={`text-sm font-bold capitalize ${
-                            selectedOrder.bold_status === 'paid' ? 'text-green-600' :
-                            selectedOrder.bold_status === 'rejected' ? 'text-red-500' : ''
-                          }`}>
-                            {selectedOrder.bold_status === 'paid' ? 'Pagado' :
-                             selectedOrder.bold_status === 'rejected' ? 'Rechazado' :
-                             selectedOrder.bold_status === 'voided' ? 'Anulado' :
-                             selectedOrder.bold_status === 'void_rejected' ? 'Anulación rechazada' :
-                             selectedOrder.bold_status}
-                          </p>
-                        </div>
+                    <div className="flex items-center gap-4 p-4 rounded-2xl bg-(--background) border border-(--card-border)">
+                      <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white"
+                        style={{ backgroundColor: !selectedOrder.bold_status ? '#6b7280' : selectedOrder.bold_status === 'paid' ? '#16a34a' : selectedOrder.bold_status === 'rejected' ? '#ef4444' : 'var(--accent-gold)' }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                       </div>
-                    )}
-                    {selectedOrder.payment_method && (
-                      <div className="flex items-center gap-4 p-4 rounded-2xl bg-(--background) border border-(--card-border)">
-                        <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white" style={{ backgroundColor: 'var(--accent-gold)' }}>
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                        </div>
-                        <div>
-                          <p className="text-[10px] font-bold text-accent-gold/50 uppercase tracking-widest">Método de Pago</p>
-                          <p className="text-sm font-bold text-(--foreground)">
-                            {selectedOrder.payment_method === 'CARD' ? 'Tarjeta de crédito/débito' :
-                             selectedOrder.payment_method === 'PSE' ? 'PSE' :
-                             selectedOrder.payment_method === 'NEQUI' ? 'Nequi' :
-                             selectedOrder.payment_method === 'BOTON_BANCOLOMBIA' ? 'Bancolombia' :
-                             selectedOrder.payment_method === 'QR' ? 'QR' :
-                             selectedOrder.payment_method || 'N/A'}
-                          </p>
-                        </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-accent-gold/50 uppercase tracking-widest">Estado Bold</p>
+                        <p className={`text-sm font-bold capitalize ${
+                          selectedOrder.bold_status === 'paid' ? 'text-green-600' :
+                          selectedOrder.bold_status === 'rejected' ? 'text-red-500' : ''
+                        }`}>
+                          {selectedOrder.bold_status === 'paid' ? 'Pagado' :
+                           selectedOrder.bold_status === 'rejected' ? 'Rechazado' :
+                           selectedOrder.bold_status === 'voided' ? 'Anulado' :
+                           selectedOrder.bold_status === 'void_rejected' ? 'Anulación rechazada' :
+                           selectedOrder.bold_status || 'Pendiente'}
+                        </p>
                       </div>
-                    )}
+                    </div>
+                    <div className="flex items-center gap-4 p-4 rounded-2xl bg-(--background) border border-(--card-border)">
+                      <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white" style={{ backgroundColor: 'var(--accent-gold)' }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-accent-gold/50 uppercase tracking-widest">Método de Pago</p>
+                        <p className="text-sm font-bold text-(--foreground)">
+                          {selectedOrder.payment_method === 'CARD' ? 'Tarjeta de crédito/débito' :
+                           selectedOrder.payment_method === 'PSE' ? 'PSE' :
+                           selectedOrder.payment_method === 'NEQUI' ? 'Nequi' :
+                           selectedOrder.payment_method === 'BOTON_BANCOLOMBIA' ? 'Bancolombia' :
+                           selectedOrder.payment_method === 'QR' ? 'QR' :
+                           selectedOrder.payment_method || '—'}
+                        </p>
+                      </div>
+                    </div>
                     {selectedOrder.bold_payment_link_id && (
                       <div className="flex items-center gap-4 p-4 rounded-2xl bg-(--background) border border-(--card-border) col-span-full">
                         <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white" style={{ backgroundColor: 'var(--accent-gold)' }}>
@@ -283,8 +279,18 @@ export function OrderList({ orders, locale }: { orders: Order[], locale: string 
                       </div>
                     )}
                   </div>
-                </section>
-              )}
+                ) : (
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-(--background) border border-(--card-border)">
+                    <div className="h-10 w-10 rounded-xl flex items-center justify-center text-white" style={{ backgroundColor: '#6b7280' }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold text-accent-gold/50 uppercase tracking-widest">Estado del Pago</p>
+                      <p className="text-sm font-bold text-gray-400">Pago no realizado</p>
+                    </div>
+                  </div>
+                )}
+              </section>
 
               {/* Seccion Productos */}
               <section className="space-y-6">
@@ -303,17 +309,17 @@ export function OrderList({ orders, locale }: { orders: Order[], locale: string 
                           <div className="flex-1">
                             <h4 className="text-sm font-bold text-(--foreground)">{item.name?.[locale] || 'Producto'}</h4>
                             <p className="text-[10px] text-accent-gold/50 font-bold uppercase tracking-widest mt-0.5">
-                              Cantidad: {item.quantity} • Unitario: S/ {item.price}
+                              Cantidad: {item.quantity} • Unitario: {currency.symbol} {item.price} {currency.code}
                             </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-sm font-bold italic" style={{ color: 'var(--accent-gold)' }}>S/ {item.price * item.quantity}</p>
+                            <p className="text-sm font-bold italic" style={{ color: 'var(--accent-gold)' }}>{currency.symbol} {item.price * item.quantity} {currency.code}</p>
                           </div>
                         </div>
                       ))}
                       <div className="p-6 bg-accent-gold/[0.03] flex justify-between items-center border-t border-(--card-border)">
                         <span className="text-[10px] font-black uppercase tracking-[2px] text-accent-gold/60">Total de la Orden</span>
-                        <span className="text-2xl font-normal" style={{ color: 'var(--accent-gold)', fontFamily: 'var(--font-serif)' }}>S/ {selectedOrder.total_amount}</span>
+                        <span className="text-2xl font-normal" style={{ color: 'var(--accent-gold)', fontFamily: 'var(--font-serif)' }}>{currency.symbol} {selectedOrder.total_amount} {currency.code}</span>
                       </div>
                     </div>
                   ) : (

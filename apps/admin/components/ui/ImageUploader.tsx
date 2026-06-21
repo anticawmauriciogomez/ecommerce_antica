@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { createBrowserClient } from '@supabase/ssr'
 import { X, UploadCloud, Loader2 } from 'lucide-react'
+import { toast } from "@repo/ui/toast"
 
 // Expects mainImage (string) and galleryImages (string[]) from existing product.
 // Puts urls into hidden inputs with name "image_url" and "image_gallery" so the parent FormData catches them.
@@ -41,7 +42,7 @@ export function ImageUploader({
 
       if (error) {
         console.error('Error uploading image', error)
-        alert('Error uploading image')
+        toast.error('Error al subir la imagen')
         continue
       }
 

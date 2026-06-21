@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { X } from "lucide-react";
+import { useCartStore } from "@/lib/cartStore";
 import styles from "./GiftForm.module.css";
 
 type Product = {
@@ -20,6 +22,10 @@ type GiftFormProps = {
 
 export default function GiftForm({ products, locale }: GiftFormProps) {
   const t = useTranslations("GiftPage");
+  const localeHook = useLocale();
+  const addItem = useCartStore((s) => s.addItem);
+  const cartItems = useCartStore((s) => s.items);
+  const checkExisting = (productId: number) => cartItems.find((item) => item.id === productId && item.is_gift);
 
   const [formData, setFormData] = useState({
     selectedExperience: "",
@@ -34,6 +40,7 @@ export default function GiftForm({ products, locale }: GiftFormProps) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
+  const [showTerms, setShowTerms] = useState(false);
 
   // Get selected experience data
   const selectedExperience = products.find(
@@ -68,28 +75,31 @@ export default function GiftForm({ products, locale }: GiftFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.acceptTerms || !selectedExperience) return;
     setIsSubmitting(true);
-    setSubmitMessage("");
 
     try {
-      // Here you would typically send the data to your backend
-      // For now, we'll simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      setSubmitMessage(t("giftSent"));
-      setFormData({
-        selectedExperience: "",
-        quantity: "1",
-        voucherValue: "",
-        notifyRecipient: false,
-        recipientName: "",
-        recipientEmail: "",
-        recipientMessage: "",
-        acceptTerms: false,
+      const qty = parseInt(formData.quantity) || 1;
+      const voucher = parseInt(formData.voucherValue) || 0;
+      addItem({
+        id: selectedExperience.id + 10000,
+        name: {
+          ...selectedExperience.name,
+          [locale]: `🎁 ${selectedExperience.name[locale]}${formData.recipientName ? ` para ${formData.recipientName}` : ''}`,
+        },
+        price: totalValue,
+        image_url: selectedExperience.image_url,
+        quantity: qty,
+        is_gift: true,
+        recipient_name: formData.recipientName || undefined,
+        recipient_email: formData.recipientEmail || undefined,
+        recipient_message: formData.recipientMessage || undefined,
+        voucher_value: voucher || undefined,
       });
+
+      window.location.href = `/${localeHook}/checkout`;
     } catch (_error) {
       setSubmitMessage(t("giftError"));
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -298,11 +308,7 @@ export default function GiftForm({ products, locale }: GiftFormProps) {
               <button
                 type="button"
                 className={styles.termsLink}
-                onClick={() =>
-                  alert(
-                    "Términos y condiciones:\n\n1. Los vouchers son válidos por 1 año desde la fecha de emisión.\n2. Los vouchers no son reembolsables ni transferibles.\n3. El beneficiado debe presentar identificación válida.\n4. Antíca se reserva el derecho de modificar las experiencias.\n5. Para más información contactar a info@antica.com",
-                  )
-                }
+                onClick={() => setShowTerms(true)}
               >
                 ({t("termsLink")})
               </button>
@@ -326,6 +332,35 @@ export default function GiftForm({ products, locale }: GiftFormProps) {
           </div>
         )}
       </form>
+
+      {showTerms && (
+        <div className={styles.overlay}>
+          <div className={styles.overlayBg} onClick={() => setShowTerms(false)} />
+          <div className={styles.modal}>
+            <button
+              onClick={() => setShowTerms(false)}
+              className={styles.modalClose}
+            >
+              <X size={20} />
+            </button>
+            <h3 className={styles.modalTitle}>Términos y Condiciones</h3>
+            <div className={styles.modalBody}>
+              <p>1. Los vouchers son válidos por 1 año desde la fecha de emisión.</p>
+              <p>2. Los vouchers no son reembolsables ni transferibles.</p>
+              <p>3. El beneficiado debe presentar identificación válida.</p>
+              <p>4. Antíca se reserva el derecho de modificar las experiencias.</p>
+              <p>5. Para más información contactar a info@antica.com.</p>
+            </div>
+            <button
+              onClick={() => setShowTerms(false)}
+              className={styles.modalButton}
+              style={{ backgroundColor: '#cba87c' }}
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

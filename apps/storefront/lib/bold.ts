@@ -47,6 +47,7 @@ export type BoldButtonConfig = {
   redirectionUrl: string;
   renderMode: 'redirect' | 'embedded';
   customerData: string;
+  billingAddress?: string;
   tax?: string;
   originUrl?: string;
   expirationDate?: number;
@@ -58,7 +59,10 @@ export async function generateButtonConfig(
   totalAmount: number,
   email: string,
   name: string,
-  phone: string
+  phone: string,
+  documentType?: string,
+  documentId?: string,
+  address?: string
 ): Promise<BoldButtonConfig> {
   const creds = await getCredentials();
   const amount = Math.round(totalAmount) * 1000;
@@ -77,6 +81,15 @@ export async function generateButtonConfig(
       email,
       fullName: name,
       phone,
+      dialCode: "+57",
+      ...(documentType && { documentType }),
+      ...(documentId && { documentNumber: documentId }),
+    }),
+    ...(address && {
+      billingAddress: JSON.stringify({
+        address,
+        country: "CO",
+      }),
     }),
   };
 }

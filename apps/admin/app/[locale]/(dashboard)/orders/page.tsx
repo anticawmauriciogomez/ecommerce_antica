@@ -1,9 +1,11 @@
 import { createClient } from '@/utils/supabase/server'
+import { getCurrency } from '@/utils/currency'
 import { OrderList } from './_components/OrderList'
 
 export default async function OrdersPage({ params }: { params: Promise<{ locale: string }> }) {
   const supabase = await createClient()
   const { locale } = await params
+  const currency = await getCurrency()
 
   const { data: orders } = await supabase
     .from('orders')
@@ -26,7 +28,7 @@ export default async function OrdersPage({ params }: { params: Promise<{ locale:
         </div>
       </div>
 
-      <OrderList orders={(orders as any) || []} locale={locale} />
+      <OrderList orders={(orders as any) || []} locale={locale} currency={currency} />
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import React, { useState, useTransition } from 'react'
 import { updateUserRole, deleteUserRole } from '../actions'
+import { toast } from "@repo/ui/toast"
 import { 
   Shield, 
   User as UserIcon, 
@@ -28,7 +29,7 @@ export function UserList({ users }: UserListProps) {
           await updateUserRole(userId, newRole as any)
           setActiveMenu(null)
         } catch (error) {
-          alert('Error al actualizar rol')
+          toast.error('Error al actualizar rol')
         }
       })
     }
@@ -41,7 +42,7 @@ export function UserList({ users }: UserListProps) {
           await deleteUserRole(userId)
           setActiveMenu(null)
         } catch (error) {
-          alert('Error al quitar acceso')
+          toast.error('Error al quitar acceso')
         }
       })
     }

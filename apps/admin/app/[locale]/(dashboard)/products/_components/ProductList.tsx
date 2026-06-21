@@ -21,9 +21,10 @@ type Product = {
 interface ProductListProps {
   initialProducts: Product[];
   deleteProductAction: (id: string) => Promise<any>;
+  currency: { code: string; symbol: string };
 }
 
-export function ProductList({ initialProducts, deleteProductAction }: ProductListProps) {
+export function ProductList({ initialProducts, deleteProductAction, currency }: ProductListProps) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const normalize = (str: string) => 
@@ -135,7 +136,7 @@ export function ProductList({ initialProducts, deleteProductAction }: ProductLis
                       </span>
                     </td>
                     <td className="px-8 py-6 text-(--foreground) font-semibold italic">
-                      S/ {product.price}
+                      {currency.symbol} {product.price} {currency.code}
                     </td>
                     <td className="px-8 py-6">
                       <span
